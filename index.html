@@ -553,7 +553,8 @@
       roomNumber: 'sleep_v4_roomNumber',
       housingType: 'sleep_v4_housingType',
       currentStatus: 'sleep_v4_currentStatus',
-      adminLoggedIn: 'sleep_v4_adminLoggedIn'
+      adminLoggedIn: 'sleep_v4_adminLoggedIn',
+      lastReportDate: 'sleep_v4_lastReportDate' // מפתח חדש לשמירת תאריך הדיווח
     };
 
     const adminState = {
@@ -652,12 +653,26 @@
       localStorage.removeItem(STORAGE_KEYS.roomNumber);
       localStorage.removeItem(STORAGE_KEYS.housingType);
       localStorage.removeItem(STORAGE_KEYS.currentStatus);
+      localStorage.removeItem(STORAGE_KEYS.lastReportDate);
 
       els.fullName.value = '';
       els.roomNumber.value = '';
       els.housingType.value = '';
       setCurrentStatus('לא ישן');
       updateToggleUI();
+    }
+
+    // --- מערכת איפוס יומי ---
+    function checkDailyReset() {
+      const savedDate = localStorage.getItem(STORAGE_KEYS.lastReportDate);
+      const today = new Date().toDateString();
+      
+      // אם שמור תאריך, אבל הוא לא של היום – אנחנו ביום חדש ויש לאפס את הסטטוס ל-"לא ישן"
+      if (savedDate && savedDate !== today) {
+        localStorage.removeItem(STORAGE_KEYS.currentStatus);
+        localStorage.setItem(STORAGE_KEYS.lastReportDate, today);
+        setCurrentStatus('לא ישן');
+      }
     }
 
     function getCurrentStatus() {
@@ -708,20 +723,47 @@
       return { fullName, roomNumber, housingType };
     }
 
+    // --- מערכת הגבלת שעות דיווח ---
+    function isReportingTimeOpen() {
+      const currentHour = new Date().getHours();
+      // true רק אם השעה היא בין 5:00 ל-08:59 (כלומר, קטן מ-9)
+      return currentHour >= 5 && currentHour < 9;
+    }
+
     function updateToggleUI() {
+      // קודם נבדוק אם צריך לאפס את היום
+      checkDailyReset();
+
       const status = getCurrentStatus();
       const isSleeping = status === 'ישן';
+      const isOpen = isReportingTimeOpen();
 
       els.currentStatusText.textContent = status;
+      
+      // נקה את המחלקות הקודמות
+      els.toggleBtn.classList.remove('state-awake', 'state-sleeping');
 
-      if (isSleeping) {
-        els.toggleBtn.textContent = '☀️ סמן אותי כער';
-        els.toggleBtn.classList.remove('state-awake');
-        els.toggleBtn.classList.add('state-sleeping');
+      if (!isOpen) {
+        // המערכת סגורה
+        els.toggleBtn.textContent = 'המערכת סגורה לדיווח (פתוח 05:00-09:00)';
+        els.toggleBtn.disabled = true;
+        els.toggleBtn.style.background = '#555';
+        els.toggleBtn.style.cursor = 'not-allowed';
+        els.toggleBtn.style.opacity = '0.7';
       } else {
-        els.toggleBtn.textContent = '🌙 סמן אותי כישן היום';
-        els.toggleBtn.classList.remove('state-sleeping');
-        els.toggleBtn.classList.add('state-awake');
+        // המערכת פתוחה לדיווחים
+        els.toggleBtn.disabled = false;
+        els.toggleBtn.style.background = ''; // מחזיר לסגנון ה-CSS הרגיל
+        els.toggleBtn.style.cursor = 'pointer';
+        els.toggleBtn.style.opacity = '1';
+
+        if (isSleeping) {
+          els.toggleBtn.textContent = '☀️ סמן אותי כער';
+          els.toggleBtn.classList.add('state-sleeping');
+        } else {
+          els.toggleBtn.textContent = '🌙 סמן אותי כישן היום';
+          els.toggleBtn.classList.add('state-awake');
+        }
       }
     }
 
@@ -742,6 +784,7 @@
 
         if (result.success) {
           setCurrentStatus(result.status || 'ער');
+          localStorage.setItem(STORAGE_KEYS.lastReportDate, new Date().toDateString());
           updateToggleUI();
         }
       } catch (error) {
@@ -778,18 +821,19 @@
         }
 
         setCurrentStatus(status);
+        localStorage.setItem(STORAGE_KEYS.lastReportDate, new Date().toDateString()); // שמירת התאריך כדי שלא יתאפס היום
         updateToggleUI();
 
         showMessage(els.userMessage, 'דווח בהצלחה', 'success');
         showToast('דווח בהצלחה');
       } catch (error) {
         showMessage(els.userMessage, error.message || 'אירעה שגיאה בשליחת הדיווח.', 'error');
-      } finally {
-        els.toggleBtn.disabled = false;
+        els.toggleBtn.disabled = false; // משחרר את הכפתור רק אם קרתה שגיאה בשרת
       }
     }
 
     async function handleToggle() {
+      if (!isReportingTimeOpen()) return; // הגנה נוספת ליתר ביטחון
       const current = getCurrentStatus();
       const next = current === 'ישן' ? 'ער' : 'ישן';
       await saveStatus(next);
@@ -1118,6 +1162,9 @@
         setAdminSession(false);
         showUserScreen();
       });
+
+      // רענון אוטומטי לממשק השעות (לבדוק כל דקה אם השעה התחלפה)
+      setInterval(updateToggleUI, 60000); 
     }
 
     async function init() {
@@ -1139,5 +1186,3 @@
 
     init();
   </script>
-</body>
-</html>
