@@ -734,11 +734,11 @@
       // קודם נבדוק אם צריך לאפס את היום
       checkDailyReset();
 
-      const status = getCurrentStatus();
-      const isSleeping = status === 'ישן';
+       const status = getCurrentStatus();
+       const isSleeping = status === 'ישן';
       const isOpen = isReportingTimeOpen();
 
-      els.currentStatusText.textContent = status;
+       els.currentStatusText.textContent = status;
       
       // נקה את המחלקות הקודמות
       els.toggleBtn.classList.remove('state-awake', 'state-sleeping');
@@ -753,12 +753,12 @@
       } else {
         // המערכת פתוחה לדיווחים
         els.toggleBtn.disabled = false;
-        els.toggleBtn.style.background = ''; // מחזיר לסגנון ה-CSS הרגיל
+        els.toggleBtn.style.background = ''; 
         els.toggleBtn.style.cursor = 'pointer';
         els.toggleBtn.style.opacity = '1';
 
         if (isSleeping) {
-          els.toggleBtn.textContent = '☀️ סמן אותי כער';
+          els.toggleBtn.textContent = '🔄 התחרטתי בסוף לא ישן'; // <-- המילה שונתה כאן
           els.toggleBtn.classList.add('state-sleeping');
         } else {
           els.toggleBtn.textContent = '🌙 סמן אותי כישן היום';
