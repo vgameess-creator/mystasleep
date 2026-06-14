@@ -1,5 +1,549 @@
-<script>
-    // הקישור המעודכן שלך:
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d1530" />
+  <title>סטטוס שינה</title>
+  <style>
+    :root {
+      --bg: #09101d;
+      --bg2: #111a31;
+      --card: rgba(19, 28, 49, 0.96);
+      --border: rgba(132, 154, 208, 0.16);
+      --text: #eef3ff;
+      --muted: #aab7d4;
+      --blue: #4da3ff;
+      --blue2: #2f70ff;
+      --orange: #ff9b45;
+      --red: #ff5d6d;
+      --green: #41d69e;
+      --chip: rgba(255,255,255,0.06);
+      --shadow: 0 14px 42px rgba(0,0,0,0.36);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-top: env(safe-area-inset-top, 0px);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(77,163,255,0.12), transparent 26%),
+        radial-gradient(circle at top left, rgba(255,155,69,0.08), transparent 22%),
+        linear-gradient(180deg, #09101d 0%, #101933 100%);
+      color: var(--text);
+    }
+
+    body {
+      padding: calc(12px + var(--safe-top)) 12px calc(28px + var(--safe-bottom));
+      display: flex;
+      justify-content: center;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 760px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-top: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      padding-top: 18px;
+      padding-bottom: 18px;
+      background: rgba(15, 23, 44, 0.88);
+      backdrop-filter: blur(14px);
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    .title {
+      margin-bottom: 6px;
+      font-size: 1.7rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid.two {
+      grid-template-columns: 1fr;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #dce6ff;
+      font-size: 0.95rem;
+    }
+
+    input, select {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(132, 154, 208, 0.20);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 15px 14px;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    input::placeholder {
+      color: #8da1c8;
+    }
+
+    input:focus, select:focus {
+      border-color: rgba(77,163,255,0.8);
+      box-shadow: 0 0 0 4px rgba(77,163,255,0.12);
+    }
+
+    select option {
+      color: #000;
+    }
+
+    .info-box {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      border-radius: 16px;
+      padding: 14px 16px;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    .info-box strong {
+      color: var(--text);
+    }
+
+    .actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      font-weight: 700;
+      transition: transform 0.12s ease, opacity 0.2s ease, background 0.2s ease;
+    }
+
+    button:active {
+      transform: scale(0.985);
+    }
+
+    button[disabled] {
+      opacity: 0.7;
+      cursor: wait;
+    }
+
+    .toggle-btn {
+      width: 100%;
+      min-height: 72px;
+      border-radius: 22px;
+      padding: 18px;
+      font-size: 1.08rem;
+    }
+
+    .state-awake {
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+    }
+
+    .state-sleeping {
+      background: linear-gradient(135deg, var(--orange), var(--red));
+    }
+
+    .secondary-btn {
+      width: 100%;
+      border-radius: 18px;
+      padding: 14px;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #1c2949, #2f3e66);
+      border: 1px solid rgba(150,170,230,0.18);
+    }
+
+    .ghost-btn {
+      width: 100%;
+      border-radius: 16px;
+      padding: 13px;
+      font-size: 0.95rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .danger-btn {
+      width: 100%;
+      border-radius: 16px;
+      padding: 13px;
+      font-size: 0.95rem;
+      background: rgba(255,93,109,0.12);
+      border: 1px solid rgba(255,93,109,0.28);
+      color: #ffc4cd;
+    }
+
+    .message {
+      display: none;
+      margin-top: 12px;
+      padding: 13px 14px;
+      border-radius: 14px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.success {
+      background: rgba(65,214,158,0.12);
+      border: 1px solid rgba(65,214,158,0.28);
+      color: #baf5de;
+    }
+
+    .message.error {
+      background: rgba(255,93,109,0.12);
+      border: 1px solid rgba(255,93,109,0.28);
+      color: #ffc4cd;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .small-link-wrap {
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .small-link {
+      color: #91aad8;
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 0.95rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #26365f, #344877);
+    }
+
+    .toolbar, .filters {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .summary-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 12px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .panel-section {
+      margin-top: 8px;
+    }
+
+    .day-card, .record-card {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .day-card {
+      margin-top: 12px;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .record-meta {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-inline-start: 6px;
+    }
+
+    .badge.sleeping {
+      background: rgba(255,155,69,0.18);
+      color: #ffd0a5;
+    }
+
+    .badge.awake {
+      background: rgba(77,163,255,0.18);
+      color: #bdd9ff;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--muted);
+      padding: 18px 12px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(18px + var(--safe-bottom));
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(17, 25, 45, 0.96);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      padding: 12px 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 20;
+      min-width: 180px;
+      text-align: center;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 12px;
+      color: #7e95c1;
+      font-size: 0.82rem;
+    }
+
+    @media (min-width: 640px) {
+      .grid.two {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .filters {
+        grid-template-columns: 1.2fr 1fr;
+      }
+
+      .summary-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      .title {
+        font-size: 2rem;
+      }
+
+      .card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="card hero">
+      <h1 class="title">ניהול סטטוס שינה</h1>
+      <p class="subtitle">מצב בטא ע״י חי</p>
+    </div>
+
+    <div class="card" id="userCard">
+      <div class="grid two">
+        <div>
+          <label for="fullName">שם מלא</label>
+          <input id="fullName" type="text" placeholder="למשל: ישראל ישראלי" />
+        </div>
+
+        <div>
+          <label for="roomNumber">מספר חדר</label>
+          <input id="roomNumber" type="text" placeholder="למשל: 101" inputmode="numeric" />
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top: 12px;">
+        <div>
+          <label for="housingType">סוג מגורים</label>
+          <select id="housingType">
+            <option value="">בחר סוג מגורים</option>
+            <option value="חיילים">חיילים</option>
+            <option value="חיילות">חיילות</option>
+            <option value="קצינות">קצינות</option>
+            <option value="קצינים">קצינים</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="info-box">
+        מצב נוכחי: <strong id="currentStatusText">ער</strong><br />
+        הפרטים נשמרים במכשיר שלך ואפשר לאפס או לעדכן אותם בכל רגע.
+      </div>
+
+      <div class="actions">
+        <button id="toggleBtn" class="toggle-btn state-awake" type="button">🌙 סמן אותי כישן היום</button>
+        <button id="saveDetailsBtn" class="ghost-btn" type="button">שמור / עדכן פרטים</button>
+        <button id="resetDetailsBtn" class="danger-btn" type="button">איפוס פרטים</button>
+      </div>
+
+      <div id="userMessage" class="message"></div>
+
+      <div class="small-link-wrap">
+        <a href="#" id="openAdminLogin" class="small-link">כניסת מנהל</a>
+      </div>
+    </div>
+
+    <div class="card hidden" id="adminLoginCard">
+      <h2>כניסת מנהל</h2>
+      <p class="subtitle" style="margin-bottom: 14px;">הכנס קוד גישה כדי לפתוח את אזור המנהל.</p>
+
+      <label for="adminPin">קוד גישה</label>
+      <input id="adminPin" type="password" placeholder="הכנס קוד" inputmode="numeric" />
+
+      <button id="adminLoginBtn" class="secondary-btn" style="margin-top: 14px;" type="button">כניסה</button>
+      <div id="adminLoginMessage" class="message"></div>
+
+      <div class="small-link-wrap">
+        <a href="#" id="backToUser" class="small-link">חזרה למסך הראשי</a>
+      </div>
+    </div>
+
+    <div class="card hidden" id="adminPanelCard">
+      <h2>פאנל מנהל</h2>
+      <p class="subtitle">סיכום ישנים, פילטרים, חיפוש, העתקה מהירה והיסטוריית 4 ימים.</p>
+
+      <div class="tabs">
+        <button id="tabTodayBtn" class="tab-btn active" type="button">מי ישן היום</button>
+        <button id="tabHistoryBtn" class="tab-btn" type="button">היסטוריית 4 ימים</button>
+      </div>
+
+      <div class="toolbar">
+        <button id="refreshAdminBtn" class="secondary-btn" type="button">רענן נתונים</button>
+        <button id="copyTodayBtn" class="ghost-btn" type="button">📋 העתק ישנים של היום</button>
+      </div>
+
+      <div class="filters">
+        <input id="adminSearchInput" type="text" placeholder="חיפוש לפי שם, חדר או סוג מגורים" />
+        <select id="housingFilter">
+          <option value="">כל סוגי המגורים</option>
+          <option value="חיילים">חיילים</option>
+          <option value="חיילות">חיילות</option>
+          <option value="קצינות">קצינות</option>
+          <option value="קצינים">קצינים</option>
+        </select>
+      </div>
+
+      <div class="summary-grid" id="summaryGrid">
+        <div class="stat-card">
+          <div class="stat-label">ישנים היום</div>
+          <div class="stat-value" id="totalSleepingCount">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">חיילים</div>
+          <div class="stat-value" id="countHayalim">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">חיילות</div>
+          <div class="stat-value" id="countHavalot">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">קצינות</div>
+          <div class="stat-value" id="countKtzinot">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">קצינים</div>
+          <div class="stat-value" id="countKtzinim">0</div>
+        </div>
+      </div>
+
+      <div id="adminPanelMessage" class="message"></div>
+
+      <div id="todayPanel" class="panel-section"></div>
+      <div id="historyPanel" class="panel-section hidden"></div>
+
+      <div class="small-link-wrap">
+        <a href="#" id="logoutAdmin" class="small-link">התנתק</a>
+      </div>
+    </div>
+
+    <div class="footer">לילה שקט 🌙</div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyCJTGreh3VgzCwIUhOW4N9zD01YTM82B9LggnQCwggGk8KZCIDhHlcU4P3a8CfbMJD/exec';
     const ADMIN_PIN = '121221';
 
@@ -636,3 +1180,5 @@
 
     init();
   </script>
+</body>
+</html>
