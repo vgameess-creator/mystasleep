@@ -213,15 +213,17 @@
 
     function isReportingTimeOpen() {
       if (isAdminSession()) return true; 
-      const now = new Date(); const currentHour = now.getHours(); const currentMinute = now.getMinutes();
-      return currentHour >= 5 && (currentHour < 8 || (currentHour === 8 && currentMinute < 30));
+      const now = new Date(); const currentHour = now.getHours();
+      // הנה השינוי - פתוח עד 9 בבוקר
+      return currentHour >= 5 && currentHour < 9;
     }
 
     function updateToggleUI() {
       checkDailyReset(); const status = getCurrentStatus(); const isSleeping = status === 'ישן'; const isOpen = isReportingTimeOpen();
       els.currentStatusText.textContent = status; els.toggleBtn.classList.remove('state-awake', 'state-sleeping');
       if (!isOpen) {
-        els.toggleBtn.textContent = 'המערכת סגורה לדיווח (פתוח 05:00-08:30)'; els.toggleBtn.disabled = true; els.toggleBtn.style.background = '#555'; els.toggleBtn.style.cursor = 'not-allowed'; els.toggleBtn.style.opacity = '0.7';
+        // הכיתוב שונה בחזרה ל-09:00
+        els.toggleBtn.textContent = 'המערכת סגורה לדיווח (פתוח 05:00-09:00)'; els.toggleBtn.disabled = true; els.toggleBtn.style.background = '#555'; els.toggleBtn.style.cursor = 'not-allowed'; els.toggleBtn.style.opacity = '0.7';
       } else {
         els.toggleBtn.disabled = false; els.toggleBtn.style.background = ''; els.toggleBtn.style.cursor = 'pointer'; els.toggleBtn.style.opacity = '1';
         if (isSleeping) { els.toggleBtn.textContent = '🔄 התחרטתי בסוף לא ישן'; els.toggleBtn.classList.add('state-sleeping'); } 
