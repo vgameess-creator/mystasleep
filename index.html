@@ -5,130 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0d1530" />
   <title>סטטוס שינה</title>
-  
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
   <style>
     :root {
-      --bg: #09101d; --bg2: #111a31; 
-      --card: rgba(15, 23, 42, 0.45); /* שקיפות זכוכיתית יותר */
-      --border: rgba(255, 255, 255, 0.08); 
-      --text: #eef3ff; --muted: #aab7d4;
-      --blue: #4da3ff; --blue2: #2f70ff; --orange: #ff9b45; --red: #ff5d6d;
-      --green: #41d69e; --shadow: 0 16px 40px rgba(0,0,0,0.4);
-      --radius: 24px; --safe-bottom: env(safe-area-inset-bottom, 0px);
-      --safe-top: env(safe-area-inset-top, 0px);
+      --bg: #09101d; --bg2: #111a31; --card: rgba(15, 23, 42, 0.45); --border: rgba(255, 255, 255, 0.08); 
+      --text: #eef3ff; --muted: #aab7d4; --blue: #4da3ff; --blue2: #2f70ff; --orange: #ff9b45; --red: #ff5d6d;
+      --green: #41d69e; --shadow: 0 16px 40px rgba(0,0,0,0.4); --radius: 24px; 
+      --safe-bottom: env(safe-area-inset-bottom, 0px); --safe-top: env(safe-area-inset-top, 0px);
     }
-    
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    
     html, body {
       margin: 0; min-height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: radial-gradient(circle at top right, rgba(77,163,255,0.15), transparent 30%),
                   radial-gradient(circle at bottom left, rgba(255,155,69,0.1), transparent 30%),
                   linear-gradient(180deg, #09101d 0%, #0d1627 100%);
-      color: var(--text);
-      background-attachment: fixed;
+      color: var(--text); background-attachment: fixed;
     }
-    
     body { padding: calc(16px + var(--safe-top)) 16px calc(32px + var(--safe-bottom)); display: flex; justify-content: center; }
     .app { width: 100%; max-width: 760px; }
-    
-    /* אפקט ה-Glassmorphism המרכזי */
-    .card { 
-      background: var(--card); 
-      border: 1px solid var(--border); 
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.05); 
-      border-radius: var(--radius); 
-      padding: 22px; 
-      margin-top: 16px; 
-      backdrop-filter: blur(20px); 
-      -webkit-backdrop-filter: blur(20px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
+    .card { background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.05); border-radius: var(--radius); padding: 22px; margin-top: 16px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .hero { position: sticky; top: 0; z-index: 5; padding-top: 20px; padding-bottom: 20px; background: rgba(11, 18, 33, 0.75); }
     h1, h2, h3, p { margin-top: 0; }
     .title { margin-bottom: 6px; font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
     .subtitle { color: var(--muted); line-height: 1.5; margin-bottom: 0; font-size: 0.95rem; }
-    .grid { display: grid; gap: 14px; }
-    .grid.two { grid-template-columns: 1fr; }
+    .grid { display: grid; gap: 14px; } .grid.two { grid-template-columns: 1fr; }
     label { display: block; margin-bottom: 8px; font-weight: 600; color: #dce6ff; font-size: 0.95rem; }
-    
-    input, select { 
-      width: 100%; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); 
-      background: rgba(0,0,0,0.2); color: var(--text); padding: 16px; font-size: 1.05rem; 
-      outline: none; transition: all 0.25s ease; 
-    }
-    input::placeholder { color: #6b82b3; }
-    input:focus, select:focus { border-color: rgba(77,163,255,0.6); box-shadow: 0 0 0 4px rgba(77,163,255,0.15); background: rgba(0,0,0,0.3); }
+    input, select { width: 100%; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: var(--text); padding: 16px; font-size: 1.05rem; outline: none; transition: all 0.25s ease; }
+    input::placeholder { color: #6b82b3; } input:focus, select:focus { border-color: rgba(77,163,255,0.6); box-shadow: 0 0 0 4px rgba(77,163,255,0.15); background: rgba(0,0,0,0.3); }
     select option { color: #000; }
-    
     .info-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: var(--muted); border-radius: 16px; padding: 16px; line-height: 1.6; margin-top: 16px; font-size: 0.95rem; }
-    .info-box strong { color: #fff; font-weight: 700; }
-    .actions { display: grid; gap: 12px; margin-top: 16px; }
-    
-    /* אנימציות כפתורים */
-    button { 
-      border: none; cursor: pointer; color: #fff; font-weight: 700; 
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-    button:active { transform: scale(0.96); }
-    button[disabled] { opacity: 0.6; cursor: not-allowed; transform: none; }
-    
+    .info-box strong { color: #fff; font-weight: 700; } .actions { display: grid; gap: 12px; margin-top: 16px; }
+    button { border: none; cursor: pointer; color: #fff; font-weight: 700; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; gap: 8px; }
+    button:active { transform: scale(0.96); } button[disabled] { opacity: 0.6; cursor: not-allowed; transform: none; }
     .toggle-btn { width: 100%; min-height: 76px; border-radius: 24px; padding: 18px; font-size: 1.15rem; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-    .state-awake { background: linear-gradient(135deg, var(--blue), var(--blue2)); border: 1px solid rgba(255,255,255,0.1); }
-    .state-sleeping { background: linear-gradient(135deg, var(--orange), var(--red)); border: 1px solid rgba(255,255,255,0.1); }
-    .secondary-btn { width: 100%; border-radius: 16px; padding: 15px; font-size: 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); }
-    .secondary-btn:hover { background: rgba(255,255,255,0.12); }
-    .ghost-btn { width: 100%; border-radius: 16px; padding: 14px; font-size: 0.95rem; background: transparent; border: 1px solid rgba(255,255,255,0.15); color: #b5c7f0; }
-    .ghost-btn:hover { background: rgba(255,255,255,0.05); color: #fff; }
-    .danger-btn { width: 100%; border-radius: 16px; padding: 14px; font-size: 0.95rem; background: rgba(255,93,109,0.1); border: 1px solid rgba(255,93,109,0.3); color: #ffc4cd; }
-    .danger-btn:hover { background: rgba(255,93,109,0.2); }
-    
-    /* ספינר אנימציה לטעינה */
-    @keyframes spin { 100% { transform: rotate(360deg); } }
-    .spinner { animation: spin 1s linear infinite; }
-
-    .message { display: none; margin-top: 14px; padding: 14px; border-radius: 14px; line-height: 1.5; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
-    .message.show { display: flex; animation: fadeIn 0.3s ease; }
+    .state-awake { background: linear-gradient(135deg, var(--blue), var(--blue2)); border: 1px solid rgba(255,255,255,0.1); } .state-sleeping { background: linear-gradient(135deg, var(--orange), var(--red)); border: 1px solid rgba(255,255,255,0.1); }
+    .secondary-btn { width: 100%; border-radius: 16px; padding: 15px; font-size: 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); } .secondary-btn:hover { background: rgba(255,255,255,0.12); }
+    .ghost-btn { width: 100%; border-radius: 16px; padding: 14px; font-size: 0.95rem; background: transparent; border: 1px solid rgba(255,255,255,0.15); color: #b5c7f0; } .ghost-btn:hover { background: rgba(255,255,255,0.05); color: #fff; }
+    .danger-btn { width: 100%; border-radius: 16px; padding: 14px; font-size: 0.95rem; background: rgba(255,93,109,0.1); border: 1px solid rgba(255,93,109,0.3); color: #ffc4cd; } .danger-btn:hover { background: rgba(255,93,109,0.2); }
+    @keyframes spin { 100% { transform: rotate(360deg); } } .spinner { animation: spin 1s linear infinite; }
+    .message { display: none; margin-top: 14px; padding: 14px; border-radius: 14px; line-height: 1.5; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; } .message.show { display: flex; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-    .message.success { background: rgba(65,214,158,0.1); border: 1px solid rgba(65,214,158,0.3); color: #baf5de; }
-    .message.error { background: rgba(255,93,109,0.1); border: 1px solid rgba(255,93,109,0.3); color: #ffc4cd; }
-    
-    .hidden { display: none !important; }
-    .small-link-wrap { text-align: center; margin-top: 16px; }
-    .small-link { color: #849ed6; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-    .small-link:hover { color: #fff; }
-    
-    .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; margin-bottom: 16px; }
-    .tab-btn { border-radius: 14px; padding: 14px; font-size: 0.95rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: var(--muted); }
+    .message.success { background: rgba(65,214,158,0.1); border: 1px solid rgba(65,214,158,0.3); color: #baf5de; } .message.error { background: rgba(255,93,109,0.1); border: 1px solid rgba(255,93,109,0.3); color: #ffc4cd; }
+    .hidden { display: none !important; } .small-link-wrap { text-align: center; margin-top: 16px; }
+    .small-link { color: #849ed6; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; } .small-link:hover { color: #fff; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; margin-bottom: 16px; }
+    .tab-btn { flex: 1; min-width: 100px; border-radius: 14px; padding: 14px; font-size: 0.95rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: var(--muted); }
     .tab-btn.active { background: rgba(77,163,255,0.15); border-color: rgba(77,163,255,0.3); color: #fff; font-weight: 700; box-shadow: inset 0 0 12px rgba(77,163,255,0.1); }
-    
-    .toolbar, .filters { display: grid; gap: 12px; margin-top: 14px; }
-    .summary-grid { display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); margin-top: 16px; }
+    .toolbar, .filters { display: grid; gap: 12px; margin-top: 14px; } .summary-grid { display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); margin-top: 16px; }
     .stat-card { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; align-items: center; }
-    .stat-label { color: var(--muted); font-size: 0.85rem; margin-bottom: 8px; font-weight: 500; }
-    .stat-value { font-size: 1.6rem; font-weight: 800; color: #fff; }
-    
-    .panel-section { margin-top: 12px; }
-    .day-card, .record-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; padding: 16px; transition: background 0.2s; }
-    .record-card:hover { background: rgba(255,255,255,0.05); }
-    .day-card { margin-top: 14px; }
-    .list { display: grid; gap: 10px; margin-top: 12px; }
-    .record-meta { color: #8a9fc8; font-size: 0.9rem; line-height: 1.5; margin-top: 6px; }
-    
+    .stat-label { color: var(--muted); font-size: 0.85rem; margin-bottom: 8px; font-weight: 500; } .stat-value { font-size: 1.6rem; font-weight: 800; color: #fff; }
+    .panel-section { margin-top: 12px; } .day-card, .record-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; padding: 16px; transition: background 0.2s; }
+    .record-card:hover { background: rgba(255,255,255,0.05); } .day-card { margin-top: 14px; } .list { display: grid; gap: 10px; margin-top: 12px; } .record-meta { color: #8a9fc8; font-size: 0.9rem; line-height: 1.5; margin-top: 6px; }
     .badge { display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; margin-inline-start: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .badge.sleeping { background: rgba(255,155,69,0.15); color: #ffb77a; border: 1px solid rgba(255,155,69,0.2); }
-    .badge.awake { background: rgba(77,163,255,0.15); color: #9bc5ff; border: 1px solid rgba(77,163,255,0.2); }
-    
+    .badge.sleeping { background: rgba(255,155,69,0.15); color: #ffb77a; border: 1px solid rgba(255,155,69,0.2); } .badge.awake { background: rgba(77,163,255,0.15); color: #9bc5ff; border: 1px solid rgba(77,163,255,0.2); }
     .empty-state { text-align: center; color: var(--muted); padding: 24px 12px; display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 0.95rem; }
-    
     .toast { position: fixed; left: 50%; bottom: calc(24px + var(--safe-bottom)); transform: translateX(-50%) translateY(20px); background: rgba(15, 23, 42, 0.95); color: #fff; border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; padding: 14px 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 20; display: flex; align-items: center; gap: 10px; font-weight: 600; white-space: nowrap; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .footer { text-align: center; margin-top: 20px; color: #5a6b8f; font-size: 0.85rem; display: flex; justify-content: center; align-items: center; gap: 6px; }
-    
     @media (min-width: 640px) { .grid.two { grid-template-columns: 1fr 1fr; } .toolbar { grid-template-columns: 1fr 1fr; } .filters { grid-template-columns: 1.2fr 1fr; } .summary-grid { grid-template-columns: repeat(5, 1fr); } .title { font-size: 2.2rem; } .card { padding: 28px; } }
   </style>
 </head>
@@ -148,11 +81,8 @@
         <div>
           <label for="housingType">סוג מגורים</label>
           <select id="housingType">
-            <option value="">בחר סוג מגורים</option>
-            <option value="חיילים">חיילים</option>
-            <option value="חיילות">חיילות</option>
-            <option value="קצינות">קצינות</option>
-            <option value="קצינים">קצינים</option>
+            <option value="">בחר סוג מגורים</option><option value="חיילים">חיילים</option><option value="חיילות">חיילות</option>
+            <option value="קצינות">קצינות</option><option value="קצינים">קצינים</option>
           </select>
         </div>
       </div>
@@ -183,30 +113,54 @@
       <h2>פאנל מנהל</h2>
       <p class="subtitle">סיכום ישנים, חיפוש, חיתוכים ומחיקה מהירה.</p>
       <div class="tabs">
-        <button id="tabTodayBtn" class="tab-btn active" type="button"><i class="ph-bold ph-calendar-check"></i> מי ישן היום</button>
-        <button id="tabHistoryBtn" class="tab-btn" type="button"><i class="ph-bold ph-clock-counter-clockwise"></i> היסטוריית 4 ימים</button>
+        <button id="tabTodayBtn" class="tab-btn active" type="button"><i class="ph-bold ph-calendar-check"></i> היום</button>
+        <button id="tabHistoryBtn" class="tab-btn" type="button"><i class="ph-bold ph-clock-counter-clockwise"></i> היסטוריה</button>
+        <button id="tabSettingsBtn" class="tab-btn" type="button"><i class="ph-bold ph-gear"></i> הגדרות וייצוא</button>
       </div>
-      <div class="toolbar">
-        <button id="refreshAdminBtn" class="secondary-btn" type="button"><i class="ph-bold ph-arrows-clockwise"></i> רענן נתונים</button>
-        <button id="copyTodayBtn" class="ghost-btn" type="button"><i class="ph-bold ph-copy"></i> העתק ישנים של היום</button>
+      
+      <div id="adminPanelMessage" class="message" style="margin-bottom:12px;"></div>
+
+      <div id="todayPanel" class="panel-section">
+        <div class="toolbar">
+          <button id="refreshAdminBtn" class="secondary-btn" type="button"><i class="ph-bold ph-arrows-clockwise"></i> רענן נתונים</button>
+          <button id="copyTodayBtn" class="ghost-btn" type="button"><i class="ph-bold ph-copy"></i> העתק ישנים</button>
+        </div>
+        <div class="filters">
+          <input id="adminSearchInput" type="text" placeholder="חיפוש לפי שם או חדר..." />
+          <select id="housingFilter">
+            <option value="">כל סוגי המגורים</option><option value="חיילים">חיילים</option><option value="חיילות">חיילות</option>
+            <option value="קצינות">קצינות</option><option value="קצינים">קצינים</option>
+          </select>
+        </div>
+        <div class="summary-grid" id="summaryGrid">
+          <div class="stat-card" style="background: rgba(77,163,255,0.1); border-color: rgba(77,163,255,0.2);"><div class="stat-label">סה"כ ישנים</div><div class="stat-value" id="totalSleepingCount">0</div></div>
+          <div class="stat-card"><div class="stat-label">חיילים</div><div class="stat-value" id="countHayalim">0</div></div>
+          <div class="stat-card"><div class="stat-label">חיילות</div><div class="stat-value" id="countHavalot">0</div></div>
+          <div class="stat-card"><div class="stat-label">קצינות</div><div class="stat-value" id="countKtzinot">0</div></div>
+          <div class="stat-card"><div class="stat-label">קצינים</div><div class="stat-value" id="countKtzinim">0</div></div>
+        </div>
+        <div id="todayListContainer"></div>
       </div>
-      <div class="filters">
-        <input id="adminSearchInput" type="text" placeholder="חיפוש לפי שם או חדר..." />
-        <select id="housingFilter">
-          <option value="">כל סוגי המגורים</option><option value="חיילים">חיילים</option><option value="חיילות">חיילות</option>
-          <option value="קצינות">קצינות</option><option value="קצינים">קצינים</option>
-        </select>
-      </div>
-      <div class="summary-grid" id="summaryGrid">
-        <div class="stat-card" style="background: rgba(77,163,255,0.1); border-color: rgba(77,163,255,0.2);"><div class="stat-label">סה"כ ישנים</div><div class="stat-value" id="totalSleepingCount">0</div></div>
-        <div class="stat-card"><div class="stat-label">חיילים</div><div class="stat-value" id="countHayalim">0</div></div>
-        <div class="stat-card"><div class="stat-label">חיילות</div><div class="stat-value" id="countHavalot">0</div></div>
-        <div class="stat-card"><div class="stat-label">קצינות</div><div class="stat-value" id="countKtzinot">0</div></div>
-        <div class="stat-card"><div class="stat-label">קצינים</div><div class="stat-value" id="countKtzinim">0</div></div>
-      </div>
-      <div id="adminPanelMessage" class="message"></div>
-      <div id="todayPanel" class="panel-section"></div>
+
       <div id="historyPanel" class="panel-section hidden"></div>
+
+      <div id="settingsPanel" class="panel-section hidden">
+        <div class="day-card" style="margin-top: 0;">
+          <strong style="display:flex; align-items:center; gap:8px; margin-bottom:16px; font-size:1.1rem;"><i class="ph-bold ph-clock"></i> שעות דיווח במערכת</strong>
+          <div class="grid two">
+            <div><label>שעת פתיחה (למשל: 5)</label><input id="startHourInput" type="number" min="0" max="23" /></div>
+            <div><label>שעת סגירה (למשל: 9)</label><input id="endHourInput" type="number" min="0" max="23" /></div>
+          </div>
+          <button id="saveHoursBtn" class="secondary-btn" style="margin-top:16px;"><i class="ph-bold ph-cloud-arrow-up"></i> שמור שעות באקסל</button>
+        </div>
+        
+        <div class="day-card" style="border-color: rgba(65,214,158,0.3);">
+          <strong style="display:flex; align-items:center; gap:8px; margin-bottom:12px; font-size:1.1rem;"><i class="ph-bold ph-file-csv"></i> ייצוא נתונים מרוכז</strong>
+          <p class="subtitle" style="margin-bottom:16px;">הורדת כל היסטוריית הדיווחים לקובץ שניתן לפתוח באקסל, לביצוע חיתוכים ודוחות מותאמים.</p>
+          <button id="exportCsvBtn" class="ghost-btn" style="background: rgba(65,214,158,0.1); color: #41d69e;"><i class="ph-bold ph-download-simple"></i> הורד דוח לאקסל (CSV)</button>
+        </div>
+      </div>
+
       <div class="small-link-wrap" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
         <button id="adminGoToMainBtn" class="ghost-btn" style="margin-bottom: 12px; background: rgba(77,163,255,0.05); color: #fff;"><i class="ph-bold ph-plus-circle"></i> הוסף חייל ידנית מהמסך הראשי</button><br>
         <a href="#" id="logoutAdmin" class="small-link" style="color: #ff5d6d;"><i class="ph-bold ph-sign-out"></i> התנתק מפאנל מנהל</a>
@@ -220,7 +174,10 @@
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyCJTGreh3VgzCwIUhOW4N9zD01YTM82B9LggnQCwggGk8KZCIDhHlcU4P3a8CfbMJD/exec';
     const ADMIN_PIN = '121221';
     const STORAGE_KEYS = { fullName: 'sleep_v4_fullName', roomNumber: 'sleep_v4_roomNumber', housingType: 'sleep_v4_housingType', currentStatus: 'sleep_v4_currentStatus', adminLoggedIn: 'sleep_v4_adminLoggedIn', lastReportDate: 'sleep_v4_lastReportDate' };
+    
+    // מצב המערכת
     const adminState = { todayData: [], historyDays: [], activeTab: 'today' };
+    const appSettings = { startHour: 5, endHour: 9 };
 
     const els = {
       fullName: document.getElementById('fullName'), roomNumber: document.getElementById('roomNumber'), housingType: document.getElementById('housingType'),
@@ -229,18 +186,16 @@
       userCard: document.getElementById('userCard'), adminLoginCard: document.getElementById('adminLoginCard'), adminPanelCard: document.getElementById('adminPanelCard'),
       adminPin: document.getElementById('adminPin'), adminLoginBtn: document.getElementById('adminLoginBtn'), adminLoginMessage: document.getElementById('adminLoginMessage'),
       adminPanelMessage: document.getElementById('adminPanelMessage'), refreshAdminBtn: document.getElementById('refreshAdminBtn'), copyTodayBtn: document.getElementById('copyTodayBtn'),
-      tabTodayBtn: document.getElementById('tabTodayBtn'), tabHistoryBtn: document.getElementById('tabHistoryBtn'), todayPanel: document.getElementById('todayPanel'),
-      historyPanel: document.getElementById('historyPanel'), adminSearchInput: document.getElementById('adminSearchInput'), housingFilter: document.getElementById('housingFilter'),
+      tabTodayBtn: document.getElementById('tabTodayBtn'), tabHistoryBtn: document.getElementById('tabHistoryBtn'), tabSettingsBtn: document.getElementById('tabSettingsBtn'),
+      todayPanel: document.getElementById('todayPanel'), todayListContainer: document.getElementById('todayListContainer'), historyPanel: document.getElementById('historyPanel'), settingsPanel: document.getElementById('settingsPanel'),
+      adminSearchInput: document.getElementById('adminSearchInput'), housingFilter: document.getElementById('housingFilter'),
       totalSleepingCount: document.getElementById('totalSleepingCount'), countHayalim: document.getElementById('countHayalim'), countHavalot: document.getElementById('countHavalot'),
       countKtzinot: document.getElementById('countKtzinot'), countKtzinim: document.getElementById('countKtzinim'), backToUser: document.getElementById('backToUser'),
-      logoutAdmin: document.getElementById('logoutAdmin'), toast: document.getElementById('toast'), adminGoToMainBtn: document.getElementById('adminGoToMainBtn')
+      logoutAdmin: document.getElementById('logoutAdmin'), toast: document.getElementById('toast'), adminGoToMainBtn: document.getElementById('adminGoToMainBtn'),
+      startHourInput: document.getElementById('startHourInput'), endHourInput: document.getElementById('endHourInput'), saveHoursBtn: document.getElementById('saveHoursBtn'), exportCsvBtn: document.getElementById('exportCsvBtn')
     };
 
-    function showMessage(element, text, type = 'success') { 
-      const icon = type === 'success' ? '<i class="ph-bold ph-check-circle"></i>' : '<i class="ph-bold ph-warning-circle"></i>';
-      element.innerHTML = `${icon} ${text}`; 
-      element.className = `message show ${type}`; 
-    }
+    function showMessage(element, text, type = 'success') { const icon = type === 'success' ? '<i class="ph-bold ph-check-circle"></i>' : '<i class="ph-bold ph-warning-circle"></i>'; element.innerHTML = `${icon} ${text}`; element.className = `message show ${type}`; }
     function clearMessage(element) { element.innerHTML = ''; element.className = 'message'; }
 
     let toastTimer = null;
@@ -251,15 +206,13 @@
     }
 
     function escapeHtml(value) { return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;'); }
+    function pad(n) { return n < 10 ? '0' + n : n; }
+
     function saveLocalDetails() { localStorage.setItem(STORAGE_KEYS.fullName, els.fullName.value.trim()); localStorage.setItem(STORAGE_KEYS.roomNumber, els.roomNumber.value.trim()); localStorage.setItem(STORAGE_KEYS.housingType, els.housingType.value); }
     function loadLocalDetails() { els.fullName.value = localStorage.getItem(STORAGE_KEYS.fullName) || ''; els.roomNumber.value = localStorage.getItem(STORAGE_KEYS.roomNumber) || ''; els.housingType.value = localStorage.getItem(STORAGE_KEYS.housingType) || ''; }
     function resetLocalDetails() { localStorage.removeItem(STORAGE_KEYS.fullName); localStorage.removeItem(STORAGE_KEYS.roomNumber); localStorage.removeItem(STORAGE_KEYS.housingType); localStorage.removeItem(STORAGE_KEYS.currentStatus); localStorage.removeItem(STORAGE_KEYS.lastReportDate); els.fullName.value = ''; els.roomNumber.value = ''; els.housingType.value = ''; setCurrentStatus('לא ישן'); updateToggleUI(); }
     
-    function checkDailyReset() {
-      const savedDate = localStorage.getItem(STORAGE_KEYS.lastReportDate); const today = new Date().toDateString();
-      if (savedDate && savedDate !== today) { localStorage.removeItem(STORAGE_KEYS.currentStatus); localStorage.setItem(STORAGE_KEYS.lastReportDate, today); setCurrentStatus('לא ישן'); }
-    }
-
+    function checkDailyReset() { const savedDate = localStorage.getItem(STORAGE_KEYS.lastReportDate); const today = new Date().toDateString(); if (savedDate && savedDate !== today) { localStorage.removeItem(STORAGE_KEYS.currentStatus); localStorage.setItem(STORAGE_KEYS.lastReportDate, today); setCurrentStatus('לא ישן'); } }
     function getCurrentStatus() { return localStorage.getItem(STORAGE_KEYS.currentStatus) || 'לא ישן'; }
     function setCurrentStatus(status) { localStorage.setItem(STORAGE_KEYS.currentStatus, status); }
     function setAdminSession(isLoggedIn) { localStorage.setItem(STORAGE_KEYS.adminLoggedIn, isLoggedIn ? '1' : '0'); }
@@ -276,7 +229,7 @@
     function isReportingTimeOpen() {
       if (isAdminSession()) return true; 
       const now = new Date(); const currentHour = now.getHours();
-      return currentHour >= 5 && currentHour < 9;
+      return currentHour >= appSettings.startHour && currentHour < appSettings.endHour;
     }
 
     function updateToggleUI() {
@@ -285,12 +238,36 @@
       els.toggleBtn.classList.remove('state-awake', 'state-sleeping');
       
       if (!isOpen) {
-        els.toggleBtn.innerHTML = '<i class="ph-fill ph-lock"></i> סגור לדיווח (05:00-09:00)'; els.toggleBtn.disabled = true; els.toggleBtn.style.background = 'rgba(255,255,255,0.05)'; els.toggleBtn.style.color = 'rgba(255,255,255,0.4)'; els.toggleBtn.style.cursor = 'not-allowed';
+        els.toggleBtn.innerHTML = `<i class="ph-fill ph-lock"></i> סגור לדיווח (${pad(appSettings.startHour)}:00-${pad(appSettings.endHour)}:00)`; els.toggleBtn.disabled = true; els.toggleBtn.style.background = 'rgba(255,255,255,0.05)'; els.toggleBtn.style.color = 'rgba(255,255,255,0.4)'; els.toggleBtn.style.cursor = 'not-allowed';
       } else {
         els.toggleBtn.disabled = false; els.toggleBtn.style.background = ''; els.toggleBtn.style.color = '#fff'; els.toggleBtn.style.cursor = 'pointer'; 
         if (isSleeping) { els.toggleBtn.innerHTML = '<i class="ph-bold ph-arrow-counter-clockwise"></i> התחרטתי בסוף לא ישן'; els.toggleBtn.classList.add('state-sleeping'); } 
         else { els.toggleBtn.innerHTML = '<i class="ph-fill ph-moon"></i> סמן אותי כישן היום'; els.toggleBtn.classList.add('state-awake'); }
       }
+    }
+
+    async function fetchSettingsFromServer() {
+      try {
+        const res = await fetch(`${scriptURL}?action=getSettings`); const data = await res.json();
+        if(data.success) { 
+          appSettings.startHour = data.startHour; appSettings.endHour = data.endHour; 
+          els.startHourInput.value = data.startHour; els.endHourInput.value = data.endHour;
+          updateToggleUI();
+        }
+      } catch (err) {}
+    }
+
+    async function saveSettingsToServer() {
+      const sHour = parseInt(els.startHourInput.value); const eHour = parseInt(els.endHourInput.value);
+      if (isNaN(sHour) || isNaN(eHour) || sHour < 0 || sHour > 23 || eHour < 0 || eHour > 23) { showToast('שעות לא תקינות', 'error'); return; }
+      
+      const orig = els.saveHoursBtn.innerHTML; els.saveHoursBtn.innerHTML = '<i class="ph-bold ph-spinner spinner"></i> שומר...'; els.saveHoursBtn.disabled = true;
+      try {
+        const res = await fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'saveSettings', startHour: sHour, endHour: eHour }) });
+        const data = await res.json();
+        if(data.success) { appSettings.startHour = sHour; appSettings.endHour = eHour; showToast('השעות נשמרו באקסל!', 'success'); updateToggleUI(); }
+      } catch(err) { showToast('שגיאה בשמירה', 'error'); }
+      finally { els.saveHoursBtn.innerHTML = orig; els.saveHoursBtn.disabled = false; }
     }
 
     async function syncUserStatusFromServer() {
@@ -304,15 +281,12 @@
 
     async function saveStatus(status) {
       const details = validateDetails(true); if (!details) return;
-      clearMessage(els.userMessage); saveLocalDetails(); els.toggleBtn.disabled = true;
-      const originalHtml = els.toggleBtn.innerHTML;
-      els.toggleBtn.innerHTML = '<i class="ph-bold ph-spinner spinner"></i> מעדכן...';
+      clearMessage(els.userMessage); saveLocalDetails(); els.toggleBtn.disabled = true; const originalHtml = els.toggleBtn.innerHTML; els.toggleBtn.innerHTML = '<i class="ph-bold ph-spinner spinner"></i> מעדכן...';
       try {
         const response = await fetch(scriptURL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'saveStatus', fullName: details.fullName, roomNumber: details.roomNumber, housingType: details.housingType, status }) });
         const result = await response.json();
         if (!result.success) throw new Error(result.error || 'שמירת הדיווח נכשלה.');
-        setCurrentStatus(status); localStorage.setItem(STORAGE_KEYS.lastReportDate, new Date().toDateString()); updateToggleUI();
-        showToast('דווח נשמר בהצלחה', 'success');
+        setCurrentStatus(status); localStorage.setItem(STORAGE_KEYS.lastReportDate, new Date().toDateString()); updateToggleUI(); showToast('דווח נשמר בהצלחה', 'success');
       } catch (error) { showMessage(els.userMessage, error.message || 'אירעה שגיאה בשליחת הדיווח.', 'error'); els.toggleBtn.innerHTML = originalHtml; els.toggleBtn.disabled = false; }
     }
 
@@ -326,13 +300,39 @@
       } catch (error) { showMessage(els.adminPanelMessage, 'שגיאה במחיקה: ' + error.message, 'error'); }
     }
 
+    // ייצוא נתונים ישירות מהדפדפן
+    function exportToCSV() {
+      if(adminState.historyDays.length === 0) { showToast('אין נתונים לייצוא', 'error'); return; }
+      let csvContent = "תאריך,שם,מספר חדר,סוג מגורים,סטטוס,שעת דיווח\n";
+      adminState.historyDays.forEach(day => {
+        day.records.forEach(r => { csvContent += `${day.date},${r.fullName},${r.roomNumber},${r.housingType},${r.status},${r.time}\n`; });
+      });
+      // הוספת BOM כדי שאקסל יזהה את העברית
+      const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob); const a = document.createElement('a');
+      a.href = url; a.download = `sleep_history_${new Date().toISOString().slice(0,10)}.csv`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      showToast('הקובץ הורד בהצלחה', 'success');
+    }
+
     async function handleToggle() { if (!isReportingTimeOpen()) return; const current = getCurrentStatus(); const next = current === 'ישן' ? 'ער' : 'ישן'; await saveStatus(next); }
     function saveOnlyDetails() { const details = validateDetails(true); if (!details) return; saveLocalDetails(); showToast('הפרטים נשמרו במכשיר', 'success'); syncUserStatusFromServer(); }
     function handleResetDetails() { resetLocalDetails(); clearMessage(els.userMessage); showToast('הפרטים אופסו', 'info'); }
     function showUserScreen() { els.userCard.classList.remove('hidden'); els.adminLoginCard.classList.add('hidden'); els.adminPanelCard.classList.add('hidden'); updateToggleUI(); }
     function showAdminLoginScreen() { els.userCard.classList.add('hidden'); els.adminLoginCard.classList.remove('hidden'); els.adminPanelCard.classList.add('hidden'); clearMessage(els.adminLoginMessage); els.adminPin.value = ''; setTimeout(() => els.adminPin.focus(), 50); }
     function showAdminPanelScreen() { els.userCard.classList.add('hidden'); els.adminLoginCard.classList.add('hidden'); els.adminPanelCard.classList.remove('hidden'); setActiveAdminTab('today'); loadAdminData(); }
-    function setActiveAdminTab(tabName) { adminState.activeTab = tabName; const isToday = tabName === 'today'; els.tabTodayBtn.classList.toggle('active', isToday); els.tabHistoryBtn.classList.toggle('active', !isToday); els.todayPanel.classList.toggle('hidden', !isToday); els.historyPanel.classList.toggle('hidden', isToday); }
+    
+    function setActiveAdminTab(tabName) { 
+      adminState.activeTab = tabName; 
+      els.tabTodayBtn.classList.toggle('active', tabName === 'today'); 
+      els.tabHistoryBtn.classList.toggle('active', tabName === 'history'); 
+      els.tabSettingsBtn.classList.toggle('active', tabName === 'settings'); 
+      
+      els.todayPanel.classList.toggle('hidden', tabName !== 'today'); 
+      els.historyPanel.classList.toggle('hidden', tabName !== 'history'); 
+      els.settingsPanel.classList.toggle('hidden', tabName !== 'settings'); 
+    }
+    
     function handleAdminLogin() { clearMessage(els.adminLoginMessage); const pin = els.adminPin.value.trim(); if (pin !== ADMIN_PIN) { showMessage(els.adminLoginMessage, 'קוד הגישה שגוי.', 'error'); return; } setAdminSession(true); showAdminPanelScreen(); }
 
     function getAdminFilters() { return { search: els.adminSearchInput.value.trim().toLowerCase(), housingType: els.housingFilter.value }; }
@@ -342,8 +342,8 @@
     function renderTodayPanel(records) {
       const filtered = applyFilters(records); updateSummary(filtered);
       const sleepingOnly = filtered.filter(item => item.status === 'ישן');
-      if (!sleepingOnly.length) { els.todayPanel.innerHTML = `<div class="empty-state"><i class="ph-thin ph-ghost" style="font-size: 3rem; color: rgba(255,255,255,0.1);"></i><span>אין כרגע תוצאות תואמות.</span></div>`; return; }
-      els.todayPanel.innerHTML = `
+      if (!sleepingOnly.length) { els.todayListContainer.innerHTML = `<div class="empty-state"><i class="ph-thin ph-ghost" style="font-size: 3rem; color: rgba(255,255,255,0.1);"></i><span>אין כרגע תוצאות תואמות.</span></div>`; return; }
+      els.todayListContainer.innerHTML = `
         <div class="day-card" style="border: 1px solid rgba(77,163,255,0.2);">
           <strong style="display:flex; align-items:center; gap:8px;"><i class="ph-bold ph-users"></i> רשימת ישנים היום: ${sleepingOnly.length}</strong>
           <div class="list">
@@ -386,7 +386,7 @@
 
     async function loadAdminData() {
       clearMessage(els.adminPanelMessage); 
-      els.todayPanel.innerHTML = `<div class="empty-state"><i class="ph-bold ph-spinner spinner" style="font-size: 2rem;"></i><span>טוען נתונים...</span></div>`; 
+      els.todayListContainer.innerHTML = `<div class="empty-state"><i class="ph-bold ph-spinner spinner" style="font-size: 2rem;"></i><span>טוען נתונים...</span></div>`; 
       els.historyPanel.innerHTML = `<div class="empty-state"><i class="ph-bold ph-spinner spinner" style="font-size: 2rem;"></i><span>טוען היסטוריה...</span></div>`;
       els.refreshAdminBtn.innerHTML = '<i class="ph-bold ph-spinner spinner"></i> מרענן...';
       try {
@@ -397,7 +397,7 @@
         adminState.todayData = Array.isArray(todayResult.days) && todayResult.days[0] ? todayResult.days[0].records || [] : [];
         adminState.historyDays = Array.isArray(historyResult.days) ? historyResult.days : [];
         rerenderAdminPanels();
-      } catch (error) { els.todayPanel.innerHTML = ''; els.historyPanel.innerHTML = ''; showMessage(els.adminPanelMessage, error.message || 'אירעה שגיאה.', 'error'); }
+      } catch (error) { els.todayListContainer.innerHTML = ''; els.historyPanel.innerHTML = ''; showMessage(els.adminPanelMessage, error.message || 'אירעה שגיאה.', 'error'); }
       finally { els.refreshAdminBtn.innerHTML = '<i class="ph-bold ph-arrows-clockwise"></i> רענן נתונים'; }
     }
 
@@ -408,15 +408,26 @@
       els.backToUser.addEventListener('click', function(e) { e.preventDefault(); showUserScreen(); });
       els.adminGoToMainBtn.addEventListener('click', function() { showUserScreen(); showToast('מצב מנהל: דיווח מחדש פתוח', 'info'); });
       els.adminLoginBtn.addEventListener('click', handleAdminLogin); els.adminPin.addEventListener('keydown', function(e) { if (e.key === 'Enter') handleAdminLogin(); });
-      els.tabTodayBtn.addEventListener('click', function() { setActiveAdminTab('today'); }); els.tabHistoryBtn.addEventListener('click', function() { setActiveAdminTab('history'); });
+      
+      els.tabTodayBtn.addEventListener('click', function() { setActiveAdminTab('today'); }); 
+      els.tabHistoryBtn.addEventListener('click', function() { setActiveAdminTab('history'); });
+      els.tabSettingsBtn.addEventListener('click', function() { setActiveAdminTab('settings'); });
+      
       els.refreshAdminBtn.addEventListener('click', loadAdminData); els.copyTodayBtn.addEventListener('click', copyTodaySleeping);
       els.adminSearchInput.addEventListener('input', rerenderAdminPanels); els.housingFilter.addEventListener('change', rerenderAdminPanels);
       els.logoutAdmin.addEventListener('click', function(e) { e.preventDefault(); setAdminSession(false); showUserScreen(); showToast('התנתקת ממצב מנהל', 'info'); });
+      
+      els.saveHoursBtn.addEventListener('click', saveSettingsToServer);
+      els.exportCsvBtn.addEventListener('click', exportToCSV);
+      
       setInterval(updateToggleUI, 60000); 
     }
 
     async function init() {
-      loadLocalDetails(); updateToggleUI(); bindEvents();
+      loadLocalDetails(); 
+      els.startHourInput.value = appSettings.startHour; els.endHourInput.value = appSettings.endHour;
+      updateToggleUI(); bindEvents();
+      fetchSettingsFromServer(); 
       const ready = validateDetails(false); if (ready) { await syncUserStatusFromServer(); }
       if (isAdminSession()) { showAdminPanelScreen(); } else { showUserScreen(); }
     }
