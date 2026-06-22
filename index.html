@@ -14,53 +14,30 @@
       --safe-bottom: env(safe-area-inset-bottom, 0px); --safe-top: env(safe-area-inset-top, 0px);
     }
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html, body {
-      margin: 0; min-height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(circle at top right, rgba(77,163,255,0.15), transparent 30%),
-                  radial-gradient(circle at bottom left, rgba(255,155,69,0.1), transparent 30%),
-                  linear-gradient(180deg, #09101d 0%, #0d1627 100%);
-      color: var(--text); background-attachment: fixed;
-    }
+    html, body { margin: 0; min-height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: radial-gradient(circle at top right, rgba(77,163,255,0.15), transparent 30%), radial-gradient(circle at bottom left, rgba(255,155,69,0.1), transparent 30%), linear-gradient(180deg, #09101d 0%, #0d1627 100%); color: var(--text); background-attachment: fixed; }
     body { padding: calc(16px + var(--safe-top)) 16px calc(32px + var(--safe-bottom)); display: flex; justify-content: center; }
     .app { width: 100%; max-width: 760px; }
     .card { background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.05); border-radius: var(--radius); padding: 22px; margin-top: 16px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .hero { position: sticky; top: 0; z-index: 5; padding-top: 20px; padding-bottom: 20px; background: rgba(11, 18, 33, 0.75); }
-    h1, h2, h3, p { margin-top: 0; }
-    .title { margin-bottom: 6px; font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
-    .subtitle { color: var(--muted); line-height: 1.5; margin-bottom: 0; font-size: 0.95rem; }
+    h1, h2, h3, p { margin-top: 0; } .title { margin-bottom: 6px; font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; } .subtitle { color: var(--muted); line-height: 1.5; margin-bottom: 0; font-size: 0.95rem; }
     .grid { display: grid; gap: 14px; } .grid.two { grid-template-columns: 1fr; }
     label { display: block; margin-bottom: 8px; font-weight: 600; color: #dce6ff; font-size: 0.95rem; }
     input, select { width: 100%; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: var(--text); padding: 16px; font-size: 1.05rem; outline: none; transition: all 0.25s ease; }
     input::placeholder { color: #6b82b3; } input:focus, select:focus { border-color: rgba(77,163,255,0.6); box-shadow: 0 0 0 4px rgba(77,163,255,0.15); background: rgba(0,0,0,0.3); }
     select option { color: #000; }
-    .info-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: var(--muted); border-radius: 16px; padding: 16px; line-height: 1.6; margin-top: 16px; font-size: 0.95rem; }
-    .info-box strong { color: #fff; font-weight: 700; } .actions { display: grid; gap: 12px; margin-top: 16px; }
-    button { border: none; cursor: pointer; color: #fff; font-weight: 700; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; gap: 8px; }
-    button:active { transform: scale(0.96); } button[disabled] { opacity: 0.6; cursor: not-allowed; transform: none; }
-    .toggle-btn { width: 100%; min-height: 76px; border-radius: 24px; padding: 18px; font-size: 1.15rem; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-    .state-awake { background: linear-gradient(135deg, var(--blue), var(--blue2)); border: 1px solid rgba(255,255,255,0.1); } .state-sleeping { background: linear-gradient(135deg, var(--orange), var(--red)); border: 1px solid rgba(255,255,255,0.1); }
-    .secondary-btn { width: 100%; border-radius: 16px; padding: 15px; font-size: 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); } .secondary-btn:hover { background: rgba(255,255,255,0.12); }
-    .ghost-btn { width: 100%; border-radius: 16px; padding: 14px; font-size: 0.95rem; background: transparent; border: 1px solid rgba(255,255,255,0.15); color: #b5c7f0; } .ghost-btn:hover { background: rgba(255,255,255,0.05); color: #fff; }
-    .danger-btn { width: 100%; border-radius: 16px; padding: 14px; font-size: 0.95rem; background: rgba(255,93,109,0.1); border: 1px solid rgba(255,93,109,0.3); color: #ffc4cd; } .danger-btn:hover { background: rgba(255,93,109,0.2); }
+    .info-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: var(--muted); border-radius: 16px; padding: 16px; line-height: 1.6; margin-top: 16px; font-size: 0.95rem; } .info-box strong { color: #fff; font-weight: 700; } .actions { display: grid; gap: 12px; margin-top: 16px; }
+    button { border: none; cursor: pointer; color: #fff; font-weight: 700; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; gap: 8px; } button:active { transform: scale(0.96); } button[disabled] { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .toggle-btn { width: 100%; min-height: 76px; border-radius: 24px; padding: 18px; font-size: 1.15rem; box-shadow: 0 8px 24px rgba(0,0,0,0.2); } .state-awake { background: linear-gradient(135deg, var(--blue), var(--blue2)); border: 1px solid rgba(255,255,255,0.1); } .state-sleeping { background: linear-gradient(135deg, var(--orange), var(--red)); border: 1px solid rgba(255,255,255,0.1); }
+    .secondary-btn { width: 100%; border-radius: 16px; padding: 15px; font-size: 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); } .secondary-btn:hover { background: rgba(255,255,255,0.12); } .ghost-btn { width: 100%; border-radius: 16px; padding: 14px; font-size: 0.95rem; background: transparent; border: 1px solid rgba(255,255,255,0.15); color: #b5c7f0; } .ghost-btn:hover { background: rgba(255,255,255,0.05); color: #fff; } .danger-btn { width: 100%; border-radius: 16px; padding: 14px; font-size: 0.95rem; background: rgba(255,93,109,0.1); border: 1px solid rgba(255,93,109,0.3); color: #ffc4cd; } .danger-btn:hover { background: rgba(255,93,109,0.2); }
     @keyframes spin { 100% { transform: rotate(360deg); } } .spinner { animation: spin 1s linear infinite; }
-    .message { display: none; margin-top: 14px; padding: 14px; border-radius: 14px; line-height: 1.5; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; } .message.show { display: flex; animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-    .message.success { background: rgba(65,214,158,0.1); border: 1px solid rgba(65,214,158,0.3); color: #baf5de; } .message.error { background: rgba(255,93,109,0.1); border: 1px solid rgba(255,93,109,0.3); color: #ffc4cd; }
-    .hidden { display: none !important; } .small-link-wrap { text-align: center; margin-top: 16px; }
-    .small-link { color: #849ed6; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; } .small-link:hover { color: #fff; }
-    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; margin-bottom: 16px; }
-    .tab-btn { flex: 1; min-width: 100px; border-radius: 14px; padding: 14px; font-size: 0.95rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: var(--muted); }
-    .tab-btn.active { background: rgba(77,163,255,0.15); border-color: rgba(77,163,255,0.3); color: #fff; font-weight: 700; box-shadow: inset 0 0 12px rgba(77,163,255,0.1); }
-    .toolbar, .filters { display: grid; gap: 12px; margin-top: 14px; } .summary-grid { display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); margin-top: 16px; }
-    .stat-card { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; align-items: center; }
-    .stat-label { color: var(--muted); font-size: 0.85rem; margin-bottom: 8px; font-weight: 500; } .stat-value { font-size: 1.6rem; font-weight: 800; color: #fff; }
-    .panel-section { margin-top: 12px; } .day-card, .record-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; padding: 16px; transition: background 0.2s; }
-    .record-card:hover { background: rgba(255,255,255,0.05); } .day-card { margin-top: 14px; } .list { display: grid; gap: 10px; margin-top: 12px; } .record-meta { color: #8a9fc8; font-size: 0.9rem; line-height: 1.5; margin-top: 6px; }
-    .badge { display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; margin-inline-start: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .badge.sleeping { background: rgba(255,155,69,0.15); color: #ffb77a; border: 1px solid rgba(255,155,69,0.2); } .badge.awake { background: rgba(77,163,255,0.15); color: #9bc5ff; border: 1px solid rgba(77,163,255,0.2); }
+    .message { display: none; margin-top: 14px; padding: 14px; border-radius: 14px; line-height: 1.5; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; } .message.show { display: flex; animation: fadeIn 0.3s ease; } @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } } .message.success { background: rgba(65,214,158,0.1); border: 1px solid rgba(65,214,158,0.3); color: #baf5de; } .message.error { background: rgba(255,93,109,0.1); border: 1px solid rgba(255,93,109,0.3); color: #ffc4cd; }
+    .hidden { display: none !important; } .small-link-wrap { text-align: center; margin-top: 16px; } .small-link { color: #849ed6; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; } .small-link:hover { color: #fff; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; margin-bottom: 16px; } .tab-btn { flex: 1; min-width: 100px; border-radius: 14px; padding: 14px; font-size: 0.95rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: var(--muted); } .tab-btn.active { background: rgba(77,163,255,0.15); border-color: rgba(77,163,255,0.3); color: #fff; font-weight: 700; box-shadow: inset 0 0 12px rgba(77,163,255,0.1); }
+    .toolbar, .filters { display: grid; gap: 12px; margin-top: 14px; } .summary-grid { display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); margin-top: 16px; } .stat-card { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; align-items: center; } .stat-label { color: var(--muted); font-size: 0.85rem; margin-bottom: 8px; font-weight: 500; } .stat-value { font-size: 1.6rem; font-weight: 800; color: #fff; }
+    .panel-section { margin-top: 12px; } .day-card, .record-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; padding: 16px; transition: background 0.2s; } .record-card:hover { background: rgba(255,255,255,0.05); } .day-card { margin-top: 14px; } .list { display: grid; gap: 10px; margin-top: 12px; } .record-meta { color: #8a9fc8; font-size: 0.9rem; line-height: 1.5; margin-top: 6px; }
+    .badge { display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; margin-inline-start: 8px; text-transform: uppercase; letter-spacing: 0.5px; } .badge.sleeping { background: rgba(255,155,69,0.15); color: #ffb77a; border: 1px solid rgba(255,155,69,0.2); } .badge.awake { background: rgba(77,163,255,0.15); color: #9bc5ff; border: 1px solid rgba(77,163,255,0.2); }
     .empty-state { text-align: center; color: var(--muted); padding: 24px 12px; display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 0.95rem; }
-    .toast { position: fixed; left: 50%; bottom: calc(24px + var(--safe-bottom)); transform: translateX(-50%) translateY(20px); background: rgba(15, 23, 42, 0.95); color: #fff; border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; padding: 14px 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 20; display: flex; align-items: center; gap: 10px; font-weight: 600; white-space: nowrap; }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast { position: fixed; left: 50%; bottom: calc(24px + var(--safe-bottom)); transform: translateX(-50%) translateY(20px); background: rgba(15, 23, 42, 0.95); color: #fff; border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; padding: 14px 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 20; display: flex; align-items: center; gap: 10px; font-weight: 600; white-space: nowrap; } .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .footer { text-align: center; margin-top: 20px; color: #5a6b8f; font-size: 0.85rem; display: flex; justify-content: center; align-items: center; gap: 6px; }
     @media (min-width: 640px) { .grid.two { grid-template-columns: 1fr 1fr; } .toolbar { grid-template-columns: 1fr 1fr; } .filters { grid-template-columns: 1.2fr 1fr; } .summary-grid { grid-template-columns: repeat(5, 1fr); } .title { font-size: 2.2rem; } .card { padding: 28px; } }
   </style>
@@ -86,10 +63,7 @@
           </select>
         </div>
       </div>
-      <div class="info-box">
-        מצב נוכחי: <strong id="currentStatusText">ער</strong><br />
-        <span style="font-size: 0.85rem; opacity: 0.8;">הפרטים נשמרים במכשיר שלך ואפשר לעדכן בכל רגע.</span>
-      </div>
+      <div class="info-box">מצב נוכחי: <strong id="currentStatusText">ער</strong><br /><span style="font-size: 0.85rem; opacity: 0.8;">הפרטים נשמרים במכשיר שלך ואפשר לעדכן בכל רגע.</span></div>
       <div class="actions">
         <button id="toggleBtn" class="toggle-btn state-awake" type="button"><i class="ph-fill ph-moon"></i> סמן אותי כישן היום</button>
         <button id="saveDetailsBtn" class="ghost-btn" type="button"><i class="ph-bold ph-floppy-disk"></i> שמור / עדכן פרטים</button>
@@ -111,7 +85,7 @@
 
     <div class="card hidden" id="adminPanelCard">
       <h2>פאנל מנהל</h2>
-      <p class="subtitle">סיכום ישנים, חיפוש, חיתוכים ומחיקה מהירה.</p>
+      <p class="subtitle">סיכום ישנים, חיפוש, חיתוכים וייצוא דוחות אקסל.</p>
       <div class="tabs">
         <button id="tabTodayBtn" class="tab-btn active" type="button"><i class="ph-bold ph-calendar-check"></i> היום</button>
         <button id="tabHistoryBtn" class="tab-btn" type="button"><i class="ph-bold ph-clock-counter-clockwise"></i> היסטוריה</button>
@@ -144,20 +118,37 @@
 
       <div id="historyPanel" class="panel-section hidden"></div>
 
+      <!-- פאנל ההגדרות והייצוא החדש -->
       <div id="settingsPanel" class="panel-section hidden">
-        <div class="day-card" style="margin-top: 0;">
+        <!-- משבצת יצוא אקסל -->
+        <div class="day-card" style="border-color: rgba(65,214,158,0.3); margin-top: 0;">
+          <strong style="display:flex; align-items:center; gap:8px; margin-bottom:16px; font-size:1.1rem; color:#41d69e;"><i class="ph-bold ph-file-csv"></i> הורדת נתונים ודוחות</strong>
+          
+          <div style="margin-bottom: 24px; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 16px;">
+            <p style="margin-bottom:12px; font-weight:600;">הורדה מהירה של היום:</p>
+            <button id="exportTodayCsvBtn" class="ghost-btn" style="background: rgba(65,214,158,0.1); border-color: rgba(65,214,158,0.2); color: #baf5de;"><i class="ph-bold ph-calendar-star"></i> הורד דוח אקסל של היום</button>
+          </div>
+
+          <div style="background: rgba(0,0,0,0.2); padding: 16px; border-radius: 16px;">
+            <p style="margin-bottom:12px; font-weight:600;">הורדה מתוך 4 הימים האחרונים:</p>
+            <div style="margin-bottom: 16px;">
+              <label>בחר תאריך לייצוא</label>
+              <select id="exportHistoryDateSelect">
+                <option value="">טוען תאריכים זמינים...</option>
+              </select>
+            </div>
+            <button id="exportHistoryCsvBtn" class="secondary-btn"><i class="ph-bold ph-download-simple"></i> הורד דוח ליום הנבחר</button>
+          </div>
+        </div>
+
+        <!-- משבצת הגדרת שעות -->
+        <div class="day-card">
           <strong style="display:flex; align-items:center; gap:8px; margin-bottom:16px; font-size:1.1rem;"><i class="ph-bold ph-clock"></i> שעות דיווח במערכת</strong>
           <div class="grid two">
             <div><label>שעת פתיחה (למשל: 5)</label><input id="startHourInput" type="number" min="0" max="23" /></div>
             <div><label>שעת סגירה (למשל: 9)</label><input id="endHourInput" type="number" min="0" max="23" /></div>
           </div>
           <button id="saveHoursBtn" class="secondary-btn" style="margin-top:16px;"><i class="ph-bold ph-cloud-arrow-up"></i> שמור שעות באקסל</button>
-        </div>
-        
-        <div class="day-card" style="border-color: rgba(65,214,158,0.3);">
-          <strong style="display:flex; align-items:center; gap:8px; margin-bottom:12px; font-size:1.1rem;"><i class="ph-bold ph-file-csv"></i> ייצוא נתונים מרוכז</strong>
-          <p class="subtitle" style="margin-bottom:16px;">הורדת כל היסטוריית הדיווחים לקובץ שניתן לפתוח באקסל, לביצוע חיתוכים ודוחות מותאמים.</p>
-          <button id="exportCsvBtn" class="ghost-btn" style="background: rgba(65,214,158,0.1); color: #41d69e;"><i class="ph-bold ph-download-simple"></i> הורד דוח לאקסל (CSV)</button>
         </div>
       </div>
 
@@ -175,7 +166,6 @@
     const ADMIN_PIN = '121221';
     const STORAGE_KEYS = { fullName: 'sleep_v4_fullName', roomNumber: 'sleep_v4_roomNumber', housingType: 'sleep_v4_housingType', currentStatus: 'sleep_v4_currentStatus', adminLoggedIn: 'sleep_v4_adminLoggedIn', lastReportDate: 'sleep_v4_lastReportDate' };
     
-    // מצב המערכת
     const adminState = { todayData: [], historyDays: [], activeTab: 'today' };
     const appSettings = { startHour: 5, endHour: 9 };
 
@@ -189,21 +179,17 @@
       tabTodayBtn: document.getElementById('tabTodayBtn'), tabHistoryBtn: document.getElementById('tabHistoryBtn'), tabSettingsBtn: document.getElementById('tabSettingsBtn'),
       todayPanel: document.getElementById('todayPanel'), todayListContainer: document.getElementById('todayListContainer'), historyPanel: document.getElementById('historyPanel'), settingsPanel: document.getElementById('settingsPanel'),
       adminSearchInput: document.getElementById('adminSearchInput'), housingFilter: document.getElementById('housingFilter'),
-      totalSleepingCount: document.getElementById('totalSleepingCount'), countHayalim: document.getElementById('countHayalim'), countHavalot: document.getElementById('countHavalot'),
-      countKtzinot: document.getElementById('countKtzinot'), countKtzinim: document.getElementById('countKtzinim'), backToUser: document.getElementById('backToUser'),
-      logoutAdmin: document.getElementById('logoutAdmin'), toast: document.getElementById('toast'), adminGoToMainBtn: document.getElementById('adminGoToMainBtn'),
-      startHourInput: document.getElementById('startHourInput'), endHourInput: document.getElementById('endHourInput'), saveHoursBtn: document.getElementById('saveHoursBtn'), exportCsvBtn: document.getElementById('exportCsvBtn')
+      totalSleepingCount: document.getElementById('totalSleepingCount'), countHayalim: document.getElementById('countHayalim'), countHavalot: document.getElementById('countHavalot'), countKtzinot: document.getElementById('countKtzinot'), countKtzinim: document.getElementById('countKtzinim'),
+      backToUser: document.getElementById('backToUser'), logoutAdmin: document.getElementById('logoutAdmin'), toast: document.getElementById('toast'), adminGoToMainBtn: document.getElementById('adminGoToMainBtn'),
+      startHourInput: document.getElementById('startHourInput'), endHourInput: document.getElementById('endHourInput'), saveHoursBtn: document.getElementById('saveHoursBtn'),
+      exportTodayCsvBtn: document.getElementById('exportTodayCsvBtn'), exportHistoryDateSelect: document.getElementById('exportHistoryDateSelect'), exportHistoryCsvBtn: document.getElementById('exportHistoryCsvBtn')
     };
 
     function showMessage(element, text, type = 'success') { const icon = type === 'success' ? '<i class="ph-bold ph-check-circle"></i>' : '<i class="ph-bold ph-warning-circle"></i>'; element.innerHTML = `${icon} ${text}`; element.className = `message show ${type}`; }
     function clearMessage(element) { element.innerHTML = ''; element.className = 'message'; }
 
     let toastTimer = null;
-    function showToast(text, type = 'success') {
-      const icon = type === 'success' ? '<i class="ph-bold ph-check-circle" style="color:#41d69e"></i>' : '<i class="ph-bold ph-info" style="color:#4da3ff"></i>';
-      els.toast.innerHTML = `${icon} ${text}`; els.toast.classList.add('show');
-      clearTimeout(toastTimer); toastTimer = setTimeout(() => { els.toast.classList.remove('show'); }, 2500);
-    }
+    function showToast(text, type = 'success') { const icon = type === 'success' ? '<i class="ph-bold ph-check-circle" style="color:#41d69e"></i>' : '<i class="ph-bold ph-info" style="color:#4da3ff"></i>'; els.toast.innerHTML = `${icon} ${text}`; els.toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => { els.toast.classList.remove('show'); }, 2500); }
 
     function escapeHtml(value) { return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;'); }
     function pad(n) { return n < 10 ? '0' + n : n; }
@@ -211,8 +197,8 @@
     function saveLocalDetails() { localStorage.setItem(STORAGE_KEYS.fullName, els.fullName.value.trim()); localStorage.setItem(STORAGE_KEYS.roomNumber, els.roomNumber.value.trim()); localStorage.setItem(STORAGE_KEYS.housingType, els.housingType.value); }
     function loadLocalDetails() { els.fullName.value = localStorage.getItem(STORAGE_KEYS.fullName) || ''; els.roomNumber.value = localStorage.getItem(STORAGE_KEYS.roomNumber) || ''; els.housingType.value = localStorage.getItem(STORAGE_KEYS.housingType) || ''; }
     function resetLocalDetails() { localStorage.removeItem(STORAGE_KEYS.fullName); localStorage.removeItem(STORAGE_KEYS.roomNumber); localStorage.removeItem(STORAGE_KEYS.housingType); localStorage.removeItem(STORAGE_KEYS.currentStatus); localStorage.removeItem(STORAGE_KEYS.lastReportDate); els.fullName.value = ''; els.roomNumber.value = ''; els.housingType.value = ''; setCurrentStatus('לא ישן'); updateToggleUI(); }
-    
     function checkDailyReset() { const savedDate = localStorage.getItem(STORAGE_KEYS.lastReportDate); const today = new Date().toDateString(); if (savedDate && savedDate !== today) { localStorage.removeItem(STORAGE_KEYS.currentStatus); localStorage.setItem(STORAGE_KEYS.lastReportDate, today); setCurrentStatus('לא ישן'); } }
+    
     function getCurrentStatus() { return localStorage.getItem(STORAGE_KEYS.currentStatus) || 'לא ישן'; }
     function setCurrentStatus(status) { localStorage.setItem(STORAGE_KEYS.currentStatus, status); }
     function setAdminSession(isLoggedIn) { localStorage.setItem(STORAGE_KEYS.adminLoggedIn, isLoggedIn ? '1' : '0'); }
@@ -226,93 +212,60 @@
       return { fullName, roomNumber, housingType };
     }
 
-    function isReportingTimeOpen() {
-      if (isAdminSession()) return true; 
-      const now = new Date(); const currentHour = now.getHours();
-      return currentHour >= appSettings.startHour && currentHour < appSettings.endHour;
-    }
+    function isReportingTimeOpen() { if (isAdminSession()) return true; const now = new Date(); const currentHour = now.getHours(); return currentHour >= appSettings.startHour && currentHour < appSettings.endHour; }
 
     function updateToggleUI() {
       checkDailyReset(); const status = getCurrentStatus(); const isSleeping = status === 'ישן'; const isOpen = isReportingTimeOpen();
-      els.currentStatusText.innerHTML = status === 'ישן' ? '<span style="color:#ffb77a">ישן</span>' : 'ער'; 
-      els.toggleBtn.classList.remove('state-awake', 'state-sleeping');
-      
-      if (!isOpen) {
-        els.toggleBtn.innerHTML = `<i class="ph-fill ph-lock"></i> סגור לדיווח (${pad(appSettings.startHour)}:00-${pad(appSettings.endHour)}:00)`; els.toggleBtn.disabled = true; els.toggleBtn.style.background = 'rgba(255,255,255,0.05)'; els.toggleBtn.style.color = 'rgba(255,255,255,0.4)'; els.toggleBtn.style.cursor = 'not-allowed';
-      } else {
-        els.toggleBtn.disabled = false; els.toggleBtn.style.background = ''; els.toggleBtn.style.color = '#fff'; els.toggleBtn.style.cursor = 'pointer'; 
+      els.currentStatusText.innerHTML = status === 'ישן' ? '<span style="color:#ffb77a">ישן</span>' : 'ער'; els.toggleBtn.classList.remove('state-awake', 'state-sleeping');
+      if (!isOpen) { els.toggleBtn.innerHTML = `<i class="ph-fill ph-lock"></i> סגור לדיווח (${pad(appSettings.startHour)}:00-${pad(appSettings.endHour)}:00)`; els.toggleBtn.disabled = true; els.toggleBtn.style.background = 'rgba(255,255,255,0.05)'; els.toggleBtn.style.color = 'rgba(255,255,255,0.4)'; els.toggleBtn.style.cursor = 'not-allowed'; } 
+      else { els.toggleBtn.disabled = false; els.toggleBtn.style.background = ''; els.toggleBtn.style.color = '#fff'; els.toggleBtn.style.cursor = 'pointer'; 
         if (isSleeping) { els.toggleBtn.innerHTML = '<i class="ph-bold ph-arrow-counter-clockwise"></i> התחרטתי בסוף לא ישן'; els.toggleBtn.classList.add('state-sleeping'); } 
         else { els.toggleBtn.innerHTML = '<i class="ph-fill ph-moon"></i> סמן אותי כישן היום'; els.toggleBtn.classList.add('state-awake'); }
       }
     }
 
-    async function fetchSettingsFromServer() {
-      try {
-        const res = await fetch(`${scriptURL}?action=getSettings`); const data = await res.json();
-        if(data.success) { 
-          appSettings.startHour = data.startHour; appSettings.endHour = data.endHour; 
-          els.startHourInput.value = data.startHour; els.endHourInput.value = data.endHour;
-          updateToggleUI();
-        }
-      } catch (err) {}
-    }
-
+    async function fetchSettingsFromServer() { try { const res = await fetch(`${scriptURL}?action=getSettings`); const data = await res.json(); if(data.success) { appSettings.startHour = data.startHour; appSettings.endHour = data.endHour; els.startHourInput.value = data.startHour; els.endHourInput.value = data.endHour; updateToggleUI(); } } catch (err) {} }
     async function saveSettingsToServer() {
       const sHour = parseInt(els.startHourInput.value); const eHour = parseInt(els.endHourInput.value);
       if (isNaN(sHour) || isNaN(eHour) || sHour < 0 || sHour > 23 || eHour < 0 || eHour > 23) { showToast('שעות לא תקינות', 'error'); return; }
-      
       const orig = els.saveHoursBtn.innerHTML; els.saveHoursBtn.innerHTML = '<i class="ph-bold ph-spinner spinner"></i> שומר...'; els.saveHoursBtn.disabled = true;
-      try {
-        const res = await fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'saveSettings', startHour: sHour, endHour: eHour }) });
-        const data = await res.json();
-        if(data.success) { appSettings.startHour = sHour; appSettings.endHour = eHour; showToast('השעות נשמרו באקסל!', 'success'); updateToggleUI(); }
-      } catch(err) { showToast('שגיאה בשמירה', 'error'); }
-      finally { els.saveHoursBtn.innerHTML = orig; els.saveHoursBtn.disabled = false; }
+      try { const res = await fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'saveSettings', startHour: sHour, endHour: eHour }) }); const data = await res.json(); if(data.success) { appSettings.startHour = sHour; appSettings.endHour = eHour; showToast('השעות נשמרו באקסל!', 'success'); updateToggleUI(); } } catch(err) { showToast('שגיאה בשמירה', 'error'); } finally { els.saveHoursBtn.innerHTML = orig; els.saveHoursBtn.disabled = false; }
     }
 
-    async function syncUserStatusFromServer() {
-      const details = validateDetails(false); if (!details) return;
-      try {
-        const params = new URLSearchParams({ action: 'userLatest', fullName: details.fullName, roomNumber: details.roomNumber, housingType: details.housingType });
-        const response = await fetch(`${scriptURL}?${params.toString()}`); const result = await response.json();
-        if (result.success) { setCurrentStatus(result.status || 'ער'); localStorage.setItem(STORAGE_KEYS.lastReportDate, new Date().toDateString()); updateToggleUI(); }
-      } catch (error) {}
-    }
+    async function syncUserStatusFromServer() { const details = validateDetails(false); if (!details) return; try { const params = new URLSearchParams({ action: 'userLatest', fullName: details.fullName, roomNumber: details.roomNumber, housingType: details.housingType }); const response = await fetch(`${scriptURL}?${params.toString()}`); const result = await response.json(); if (result.success) { setCurrentStatus(result.status || 'ער'); localStorage.setItem(STORAGE_KEYS.lastReportDate, new Date().toDateString()); updateToggleUI(); } } catch (error) {} }
 
     async function saveStatus(status) {
-      const details = validateDetails(true); if (!details) return;
-      clearMessage(els.userMessage); saveLocalDetails(); els.toggleBtn.disabled = true; const originalHtml = els.toggleBtn.innerHTML; els.toggleBtn.innerHTML = '<i class="ph-bold ph-spinner spinner"></i> מעדכן...';
-      try {
-        const response = await fetch(scriptURL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'saveStatus', fullName: details.fullName, roomNumber: details.roomNumber, housingType: details.housingType, status }) });
-        const result = await response.json();
-        if (!result.success) throw new Error(result.error || 'שמירת הדיווח נכשלה.');
-        setCurrentStatus(status); localStorage.setItem(STORAGE_KEYS.lastReportDate, new Date().toDateString()); updateToggleUI(); showToast('דווח נשמר בהצלחה', 'success');
-      } catch (error) { showMessage(els.userMessage, error.message || 'אירעה שגיאה בשליחת הדיווח.', 'error'); els.toggleBtn.innerHTML = originalHtml; els.toggleBtn.disabled = false; }
+      const details = validateDetails(true); if (!details) return; clearMessage(els.userMessage); saveLocalDetails(); els.toggleBtn.disabled = true; const originalHtml = els.toggleBtn.innerHTML; els.toggleBtn.innerHTML = '<i class="ph-bold ph-spinner spinner"></i> מעדכן...';
+      try { const response = await fetch(scriptURL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'saveStatus', fullName: details.fullName, roomNumber: details.roomNumber, housingType: details.housingType, status }) }); const result = await response.json(); if (!result.success) throw new Error(result.error || 'שמירת הדיווח נכשלה.'); setCurrentStatus(status); localStorage.setItem(STORAGE_KEYS.lastReportDate, new Date().toDateString()); updateToggleUI(); showToast('דווח נשמר בהצלחה', 'success'); } catch (error) { showMessage(els.userMessage, error.message || 'אירעה שגיאה בשליחת הדיווח.', 'error'); els.toggleBtn.innerHTML = originalHtml; els.toggleBtn.disabled = false; }
     }
 
-    async function deleteRecordFromServer(fullName, roomNumber, housingType) {
-      clearMessage(els.adminPanelMessage);
-      try {
-        const response = await fetch(scriptURL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'deleteRecord', fullName, roomNumber, housingType }) });
-        const result = await response.json();
-        if (!result.success) throw new Error(result.error || 'מחיקה נכשלה.');
-        showToast('הדיווח נמחק מהמערכת', 'info'); loadAdminData();
-      } catch (error) { showMessage(els.adminPanelMessage, 'שגיאה במחיקה: ' + error.message, 'error'); }
+    async function deleteRecordFromServer(fullName, roomNumber, housingType) { clearMessage(els.adminPanelMessage); try { const response = await fetch(scriptURL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'deleteRecord', fullName, roomNumber, housingType }) }); const result = await response.json(); if (!result.success) throw new Error(result.error || 'מחיקה נכשלה.'); showToast('הדיווח נמחק מהמערכת', 'info'); loadAdminData(); } catch (error) { showMessage(els.adminPanelMessage, 'שגיאה במחיקה: ' + error.message, 'error'); } }
+
+    /* פונקציות ייצוא CSV */
+    function triggerCSVDownload(csvContent, filename) {
+      const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' }); 
+      const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); showToast('הקובץ הורד בהצלחה', 'success');
     }
 
-    // ייצוא נתונים ישירות מהדפדפן
-    function exportToCSV() {
-      if(adminState.historyDays.length === 0) { showToast('אין נתונים לייצוא', 'error'); return; }
-      let csvContent = "תאריך,שם,מספר חדר,סוג מגורים,סטטוס,שעת דיווח\n";
-      adminState.historyDays.forEach(day => {
-        day.records.forEach(r => { csvContent += `${day.date},${r.fullName},${r.roomNumber},${r.housingType},${r.status},${r.time}\n`; });
-      });
-      // הוספת BOM כדי שאקסל יזהה את העברית
-      const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob); const a = document.createElement('a');
-      a.href = url; a.download = `sleep_history_${new Date().toISOString().slice(0,10)}.csv`;
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      showToast('הקובץ הורד בהצלחה', 'success');
+    function exportTodayToCSV() {
+      if(adminState.todayData.length === 0) { showToast('אין נתונים להיום', 'error'); return; }
+      const todayStr = new Date().toISOString().slice(0,10);
+      let csvContent = "תאריך,שעת דיווח,שם,מספר חדר,סוג מגורים,סטטוס\n";
+      adminState.todayData.forEach(r => { csvContent += `${todayStr},${r.time},${r.fullName},${r.roomNumber},${r.housingType},${r.status}\n`; });
+      triggerCSVDownload(csvContent, `sleep_today_${todayStr}.csv`);
+    }
+
+    function exportHistoryToCSV() {
+      const selectedDate = els.exportHistoryDateSelect.value;
+      if (!selectedDate) { showToast('יש לבחור תאריך מהרשימה', 'error'); return; }
+      
+      const dayData = adminState.historyDays.find(d => d.date === selectedDate);
+      if (!dayData || dayData.records.length === 0) { showToast('אין נתונים ליום זה', 'info'); return; }
+
+      let csvContent = "תאריך,שעת דיווח,שם,מספר חדר,סוג מגורים,סטטוס\n";
+      dayData.records.forEach(r => { csvContent += `${selectedDate},${r.time},${r.fullName},${r.roomNumber},${r.housingType},${r.status}\n`; });
+      
+      triggerCSVDownload(csvContent, `sleep_export_${selectedDate.replaceAll('/','-')}.csv`);
     }
 
     async function handleToggle() { if (!isReportingTimeOpen()) return; const current = getCurrentStatus(); const next = current === 'ישן' ? 'ער' : 'ישן'; await saveStatus(next); }
@@ -323,39 +276,19 @@
     function showAdminPanelScreen() { els.userCard.classList.add('hidden'); els.adminLoginCard.classList.add('hidden'); els.adminPanelCard.classList.remove('hidden'); setActiveAdminTab('today'); loadAdminData(); }
     
     function setActiveAdminTab(tabName) { 
-      adminState.activeTab = tabName; 
-      els.tabTodayBtn.classList.toggle('active', tabName === 'today'); 
-      els.tabHistoryBtn.classList.toggle('active', tabName === 'history'); 
-      els.tabSettingsBtn.classList.toggle('active', tabName === 'settings'); 
-      
-      els.todayPanel.classList.toggle('hidden', tabName !== 'today'); 
-      els.historyPanel.classList.toggle('hidden', tabName !== 'history'); 
-      els.settingsPanel.classList.toggle('hidden', tabName !== 'settings'); 
+      adminState.activeTab = tabName; els.tabTodayBtn.classList.toggle('active', tabName === 'today'); els.tabHistoryBtn.classList.toggle('active', tabName === 'history'); els.tabSettingsBtn.classList.toggle('active', tabName === 'settings'); 
+      els.todayPanel.classList.toggle('hidden', tabName !== 'today'); els.historyPanel.classList.toggle('hidden', tabName !== 'history'); els.settingsPanel.classList.toggle('hidden', tabName !== 'settings'); 
     }
     
     function handleAdminLogin() { clearMessage(els.adminLoginMessage); const pin = els.adminPin.value.trim(); if (pin !== ADMIN_PIN) { showMessage(els.adminLoginMessage, 'קוד הגישה שגוי.', 'error'); return; } setAdminSession(true); showAdminPanelScreen(); }
-
     function getAdminFilters() { return { search: els.adminSearchInput.value.trim().toLowerCase(), housingType: els.housingFilter.value }; }
     function applyFilters(records) { const filters = getAdminFilters(); return records.filter(item => { const matchesHousing = !filters.housingType || item.housingType === filters.housingType; const haystack = [item.fullName, item.roomNumber, item.housingType, item.status].join(' ').toLowerCase(); const matchesSearch = !filters.search || haystack.includes(filters.search); return matchesHousing && matchesSearch; }); }
     function updateSummary(records) { const sleeping = records.filter(item => item.status === 'ישן'); const counts = { total: sleeping.length, 'חיילים': sleeping.filter(x => x.housingType === 'חיילים').length, 'חיילות': sleeping.filter(x => x.housingType === 'חיילות').length, 'קצינות': sleeping.filter(x => x.housingType === 'קצינות').length, 'קצינים': sleeping.filter(x => x.housingType === 'קצינים').length }; els.totalSleepingCount.textContent = counts.total; els.countHayalim.textContent = counts['חיילים']; els.countHavalot.textContent = counts['חיילות']; els.countKtzinot.textContent = counts['קצינות']; els.countKtzinim.textContent = counts['קצינים']; }
 
     function renderTodayPanel(records) {
-      const filtered = applyFilters(records); updateSummary(filtered);
-      const sleepingOnly = filtered.filter(item => item.status === 'ישן');
+      const filtered = applyFilters(records); updateSummary(filtered); const sleepingOnly = filtered.filter(item => item.status === 'ישן');
       if (!sleepingOnly.length) { els.todayListContainer.innerHTML = `<div class="empty-state"><i class="ph-thin ph-ghost" style="font-size: 3rem; color: rgba(255,255,255,0.1);"></i><span>אין כרגע תוצאות תואמות.</span></div>`; return; }
-      els.todayListContainer.innerHTML = `
-        <div class="day-card" style="border: 1px solid rgba(77,163,255,0.2);">
-          <strong style="display:flex; align-items:center; gap:8px;"><i class="ph-bold ph-users"></i> רשימת ישנים היום: ${sleepingOnly.length}</strong>
-          <div class="list">
-            ${sleepingOnly.map(item => `
-              <div class="record-card" style="display:flex; justify-content:space-between; align-items:center;">
-                <div><strong>${escapeHtml(item.fullName)}</strong> <span class="badge sleeping"><i class="ph-fill ph-moon"></i> ישן</span><div class="record-meta"><i class="ph-bold ph-door"></i> חדר ${escapeHtml(item.roomNumber)} &nbsp;|&nbsp; <i class="ph-bold ph-house"></i> ${escapeHtml(item.housingType)} &nbsp;|&nbsp; ${escapeHtml(item.time)}</div></div>
-                <button class="danger-btn delete-btn" style="width:40px; height:40px; padding:0; border-radius:12px; margin:0;" data-name="${escapeHtml(item.fullName)}" data-room="${escapeHtml(item.roomNumber)}" data-type="${escapeHtml(item.housingType)}"><i class="ph-bold ph-trash" style="pointer-events:none;"></i></button>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      `;
+      els.todayListContainer.innerHTML = `<div class="day-card" style="border: 1px solid rgba(77,163,255,0.2);"><strong style="display:flex; align-items:center; gap:8px;"><i class="ph-bold ph-users"></i> רשימת ישנים היום: ${sleepingOnly.length}</strong><div class="list">${sleepingOnly.map(item => `<div class="record-card" style="display:flex; justify-content:space-between; align-items:center;"><div><strong>${escapeHtml(item.fullName)}</strong> <span class="badge sleeping"><i class="ph-fill ph-moon"></i> ישן</span><div class="record-meta"><i class="ph-bold ph-door"></i> חדר ${escapeHtml(item.roomNumber)} &nbsp;|&nbsp; <i class="ph-bold ph-house"></i> ${escapeHtml(item.housingType)} &nbsp;|&nbsp; ${escapeHtml(item.time)}</div></div><button class="danger-btn delete-btn" style="width:40px; height:40px; padding:0; border-radius:12px; margin:0;" data-name="${escapeHtml(item.fullName)}" data-room="${escapeHtml(item.roomNumber)}" data-type="${escapeHtml(item.housingType)}"><i class="ph-bold ph-trash" style="pointer-events:none;"></i></button></div>`).join('')}</div></div>`;
       document.querySelectorAll('.delete-btn').forEach(btn => { btn.addEventListener('click', async (e) => { const name = e.target.dataset.name; const room = e.target.dataset.room; const type = e.target.dataset.type; if (confirm(`האם למחוק את הדיווח של ${name}?`)) { e.target.innerHTML = '<i class="ph-bold ph-spinner spinner"></i>'; await deleteRecordFromServer(name, room, type); } }); });
     }
 
@@ -364,16 +297,7 @@
       const html = days.map(day => {
         const filteredRecords = day.records.filter(item => { const matchesHousing = !filters.housingType || item.housingType === filters.housingType; const haystack = [item.fullName, item.roomNumber, item.housingType, item.status].join(' ').toLowerCase(); const matchesSearch = !filters.search || haystack.includes(filters.search); return matchesHousing && matchesSearch; });
         const sleepingCount = filteredRecords.filter(item => item.status === 'ישן').length;
-        return `
-          <div class="day-card">
-            <strong style="display:flex; align-items:center; gap:8px;"><i class="ph-bold ph-calendar-blank"></i> ${escapeHtml(day.date)}</strong>
-            <div class="record-meta" style="margin-top:6px;">נרשמו: ${filteredRecords.length} &nbsp;|&nbsp; ישנים: ${sleepingCount}</div>
-            <div class="toolbar" style="margin-top:12px;"><button class="ghost-btn copy-by-date-btn" data-date="${escapeHtml(day.date)}" type="button"><i class="ph-bold ph-copy"></i> העתק ישנים של יום זה</button></div>
-            <div class="list">
-              ${filteredRecords.length ? filteredRecords.map(item => `<div class="record-card"><strong>${escapeHtml(item.fullName)}</strong> <span class="badge ${item.status === 'ישן' ? 'sleeping' : 'awake'}">${item.status === 'ישן' ? '<i class="ph-fill ph-moon"></i> ישן' : '<i class="ph-bold ph-sun"></i> ער'}</span><div class="record-meta"><i class="ph-bold ph-door"></i> חדר ${escapeHtml(item.roomNumber)} &nbsp;|&nbsp; <i class="ph-bold ph-house"></i> ${escapeHtml(item.housingType)} &nbsp;|&nbsp; ${escapeHtml(item.time)}</div></div>`).join('') : '<div class="record-card" style="text-align:center; color:var(--muted);">אין תוצאות ליום זה.</div>'}
-            </div>
-          </div>
-        `;
+        return `<div class="day-card"><strong style="display:flex; align-items:center; gap:8px;"><i class="ph-bold ph-calendar-blank"></i> ${escapeHtml(day.date)}</strong><div class="record-meta" style="margin-top:6px;">נרשמו: ${filteredRecords.length} &nbsp;|&nbsp; ישנים: ${sleepingCount}</div><div class="toolbar" style="margin-top:12px;"><button class="ghost-btn copy-by-date-btn" data-date="${escapeHtml(day.date)}" type="button"><i class="ph-bold ph-copy"></i> העתק ישנים של יום זה</button></div><div class="list">${filteredRecords.length ? filteredRecords.map(item => `<div class="record-card"><strong>${escapeHtml(item.fullName)}</strong> <span class="badge ${item.status === 'ישן' ? 'sleeping' : 'awake'}">${item.status === 'ישן' ? '<i class="ph-fill ph-moon"></i> ישן' : '<i class="ph-bold ph-sun"></i> ער'}</span><div class="record-meta"><i class="ph-bold ph-door"></i> חדר ${escapeHtml(item.roomNumber)} &nbsp;|&nbsp; <i class="ph-bold ph-house"></i> ${escapeHtml(item.housingType)} &nbsp;|&nbsp; ${escapeHtml(item.time)}</div></div>`).join('') : '<div class="record-card" style="text-align:center; color:var(--muted);">אין תוצאות ליום זה.</div>'}</div></div>`;
       }).join('');
       els.historyPanel.innerHTML = html || `<div class="empty-state"><i class="ph-thin ph-clock" style="font-size: 3rem; color: rgba(255,255,255,0.1);"></i><span>אין היסטוריה להצגה.</span></div>`;
       document.querySelectorAll('.copy-by-date-btn').forEach(btn => { btn.addEventListener('click', () => copySleepingByDate(btn.dataset.date)); });
@@ -385,49 +309,42 @@
     async function copySleepingByDate(date) { clearMessage(els.adminPanelMessage); try { const params = new URLSearchParams({ action: 'copySleepingByDate', date }); const response = await fetch(`${scriptURL}?${params.toString()}`); const result = await response.json(); if (!result.success) throw new Error(result.error || 'לא ניתן להעתיק את הרשימה.'); await navigator.clipboard.writeText(result.text || 'אין ישנים ביום זה.'); showToast('הרשימה הועתקה ללוח', 'success'); } catch (error) { showMessage(els.adminPanelMessage, error.message || 'העתקה נכשלה.', 'error'); } }
 
     async function loadAdminData() {
-      clearMessage(els.adminPanelMessage); 
-      els.todayListContainer.innerHTML = `<div class="empty-state"><i class="ph-bold ph-spinner spinner" style="font-size: 2rem;"></i><span>טוען נתונים...</span></div>`; 
-      els.historyPanel.innerHTML = `<div class="empty-state"><i class="ph-bold ph-spinner spinner" style="font-size: 2rem;"></i><span>טוען היסטוריה...</span></div>`;
-      els.refreshAdminBtn.innerHTML = '<i class="ph-bold ph-spinner spinner"></i> מרענן...';
+      clearMessage(els.adminPanelMessage); els.todayListContainer.innerHTML = `<div class="empty-state"><i class="ph-bold ph-spinner spinner" style="font-size: 2rem;"></i><span>טוען נתונים...</span></div>`; els.historyPanel.innerHTML = `<div class="empty-state"><i class="ph-bold ph-spinner spinner" style="font-size: 2rem;"></i><span>טוען היסטוריה...</span></div>`; els.refreshAdminBtn.innerHTML = '<i class="ph-bold ph-spinner spinner"></i> מרענן...';
       try {
         const [todayResponse, historyResponse] = await Promise.all([ fetch(`${scriptURL}?action=todayLatest`), fetch(`${scriptURL}?action=historyLatest`) ]);
         const todayResult = await todayResponse.json(); const historyResult = await historyResponse.json();
-        if (!todayResult.success) throw new Error(todayResult.error || 'טעינת נתוני היום נכשלה.');
-        if (!historyResult.success) throw new Error(historyResult.error || 'טעינת ההיסטוריה נכשלה.');
-        adminState.todayData = Array.isArray(todayResult.days) && todayResult.days[0] ? todayResult.days[0].records || [] : [];
+        if (!todayResult.success) throw new Error(todayResult.error || 'טעינת נתוני היום נכשלה.'); if (!historyResult.success) throw new Error(historyResult.error || 'טעינת ההיסטוריה נכשלה.');
+        adminState.todayData = Array.isArray(todayResult.days) && todayResult.days[0] ? todayResult.days[0].records || [] : []; 
         adminState.historyDays = Array.isArray(historyResult.days) ? historyResult.days : [];
+        
+        // טעינת רשימת התאריכים לתיבת הבחירה בטאב הגדרות
+        els.exportHistoryDateSelect.innerHTML = '<option value="">בחר תאריך...</option>' + adminState.historyDays.map(d => `<option value="${escapeHtml(d.date)}">${escapeHtml(d.date)}</option>`).join('');
+
         rerenderAdminPanels();
-      } catch (error) { els.todayListContainer.innerHTML = ''; els.historyPanel.innerHTML = ''; showMessage(els.adminPanelMessage, error.message || 'אירעה שגיאה.', 'error'); }
-      finally { els.refreshAdminBtn.innerHTML = '<i class="ph-bold ph-arrows-clockwise"></i> רענן נתונים'; }
+      } catch (error) { els.todayListContainer.innerHTML = ''; els.historyPanel.innerHTML = ''; showMessage(els.adminPanelMessage, error.message || 'אירעה שגיאה.', 'error'); } finally { els.refreshAdminBtn.innerHTML = '<i class="ph-bold ph-arrows-clockwise"></i> רענן נתונים'; }
     }
 
     function bindEvents() {
       els.fullName.addEventListener('input', saveLocalDetails); els.roomNumber.addEventListener('input', saveLocalDetails); els.housingType.addEventListener('change', saveLocalDetails);
       els.toggleBtn.addEventListener('click', handleToggle); els.saveDetailsBtn.addEventListener('click', saveOnlyDetails); els.resetDetailsBtn.addEventListener('click', handleResetDetails);
       els.openAdminLogin.addEventListener('click', function(e) { e.preventDefault(); if (isAdminSession()) { showAdminPanelScreen(); } else { showAdminLoginScreen(); } });
-      els.backToUser.addEventListener('click', function(e) { e.preventDefault(); showUserScreen(); });
-      els.adminGoToMainBtn.addEventListener('click', function() { showUserScreen(); showToast('מצב מנהל: דיווח מחדש פתוח', 'info'); });
+      els.backToUser.addEventListener('click', function(e) { e.preventDefault(); showUserScreen(); }); els.adminGoToMainBtn.addEventListener('click', function() { showUserScreen(); showToast('מצב מנהל: דיווח מחדש פתוח', 'info'); });
       els.adminLoginBtn.addEventListener('click', handleAdminLogin); els.adminPin.addEventListener('keydown', function(e) { if (e.key === 'Enter') handleAdminLogin(); });
       
-      els.tabTodayBtn.addEventListener('click', function() { setActiveAdminTab('today'); }); 
-      els.tabHistoryBtn.addEventListener('click', function() { setActiveAdminTab('history'); });
-      els.tabSettingsBtn.addEventListener('click', function() { setActiveAdminTab('settings'); });
-      
+      els.tabTodayBtn.addEventListener('click', function() { setActiveAdminTab('today'); }); els.tabHistoryBtn.addEventListener('click', function() { setActiveAdminTab('history'); }); els.tabSettingsBtn.addEventListener('click', function() { setActiveAdminTab('settings'); });
       els.refreshAdminBtn.addEventListener('click', loadAdminData); els.copyTodayBtn.addEventListener('click', copyTodaySleeping);
       els.adminSearchInput.addEventListener('input', rerenderAdminPanels); els.housingFilter.addEventListener('change', rerenderAdminPanels);
       els.logoutAdmin.addEventListener('click', function(e) { e.preventDefault(); setAdminSession(false); showUserScreen(); showToast('התנתקת ממצב מנהל', 'info'); });
       
       els.saveHoursBtn.addEventListener('click', saveSettingsToServer);
-      els.exportCsvBtn.addEventListener('click', exportToCSV);
-      
+      els.exportTodayCsvBtn.addEventListener('click', exportTodayToCSV);
+      els.exportHistoryCsvBtn.addEventListener('click', exportHistoryToCSV);
       setInterval(updateToggleUI, 60000); 
     }
 
     async function init() {
-      loadLocalDetails(); 
-      els.startHourInput.value = appSettings.startHour; els.endHourInput.value = appSettings.endHour;
-      updateToggleUI(); bindEvents();
-      fetchSettingsFromServer(); 
+      loadLocalDetails(); els.startHourInput.value = appSettings.startHour; els.endHourInput.value = appSettings.endHour;
+      updateToggleUI(); bindEvents(); fetchSettingsFromServer(); 
       const ready = validateDetails(false); if (ready) { await syncUserStatusFromServer(); }
       if (isAdminSession()) { showAdminPanelScreen(); } else { showUserScreen(); }
     }
